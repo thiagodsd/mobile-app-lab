@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage";
+
+import "./globals.css";
+import 'aos/dist/aos.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        AOS.init({
+            duration : 1200,
+            data_aos_offset : 300,
+            data_aos_easing : "ease-in-sine"
+        });
+    }, []);
+    return (
+        <div>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
