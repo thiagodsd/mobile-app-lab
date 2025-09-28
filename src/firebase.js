@@ -17,6 +17,14 @@ const firebaseConfig = {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
+// Validate that essential Firebase config is available
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+    console.error('Firebase configuration missing. Please set environment variables in .env.local');
+    console.error('Copy .env.example to .env.local and fill in your Firebase credentials.');
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export { app, analytics };
