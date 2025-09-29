@@ -9,7 +9,11 @@ import type { PlotParams } from 'react-plotly.js';
 // @ts-expect-error - dynamic import typing issue with react-plotly.js
 const Plot = dynamic<PlotParams>(() => import('react-plotly.js'), {
   ssr: false,
-  loading: () => <div>Carregando gráfico...</div>
+  loading: () => (
+    <div className="w-full h-[400px] bg-gray-100 rounded-xl animate-pulse flex items-center justify-center">
+      <div className="text-gray-400 text-sm">Carregando gráfico...</div>
+    </div>
+  )
 });
 
 export default function TeoriaPage() {
@@ -73,7 +77,7 @@ export default function TeoriaPage() {
           <h2 className="text-2xl font-light text-black mb-4">Função Densidade de Probabilidade</h2>
 
           <p className="text-black mb-4 leading-relaxed">
-            Uma função densidade de probabilidade (PDF) descreve a probabilidade relativa de uma variável aleatória contínua assumir determinado valor. Toda PDF possui três propriedades fundamentais:
+            Uma função densidade de probabilidade (FDP) descreve a probabilidade relativa de uma variável aleatória contínua assumir determinado valor. Toda FDP possui três propriedades fundamentais:
           </p>
 
           <ol className="list-decimal list-inside text-black mb-6 space-y-2">
