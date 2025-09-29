@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Regras simplificadas para a coleção conhecimento_previo
+    // Permite leitura e escrita pública (sem autenticação necessária)
+    match /conhecimento_previo/{document=**} {
+      // Qualquer um pode ler
+      allow read: if true;
+
+      // Qualquer um pode criar novos documentos
+      allow create: if true;
+
+      // Não permite update/delete por segurança
+      allow update, delete: if false;
+    }
+
+    // Nega acesso a todas as outras coleções por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
