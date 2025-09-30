@@ -6,7 +6,6 @@ import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import type { PlotParams } from 'react-plotly.js';
 
-// @ts-expect-error - dynamic import typing issue with react-plotly.js
 const Plot = dynamic<PlotParams>(() => import('react-plotly.js'), {
   ssr: false,
   loading: () => (
