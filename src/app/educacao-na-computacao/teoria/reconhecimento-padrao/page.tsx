@@ -1,19 +1,20 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { InlineMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
+import type { PlotParams } from 'react-plotly.js';
 
-const Plot = dynamic(() => import('react-plotly.js'), {
+const Plot = dynamic<PlotParams>(() => import('react-plotly.js'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[250px] bg-gray-100 rounded-xl animate-pulse flex items-center justify-center">
       <div className="text-gray-400 text-sm">Carregando gráfico...</div>
     </div>
   )
-}) as any;
+});
 
 type Answer = 'valid' | 'invalid' | null;
 
@@ -79,6 +80,7 @@ export default function ReconhecimentoPadraoPage() {
   const handleReset = () => {
     setAnswers({ distA: null, distB: null, distC: null });
     setChecked(false);
+    localStorage.removeItem('acertouReconhecimento');
   };
 
   const getFeedback = (dist: 'distA' | 'distB' | 'distC') => {
@@ -147,6 +149,13 @@ export default function ReconhecimentoPadraoPage() {
     getFeedback('distA').isCorrect &&
     getFeedback('distB').isCorrect &&
     getFeedback('distC').isCorrect;
+
+  // Salvar no localStorage quando acertar tudo
+  useEffect(() => {
+    if (allCorrect) {
+      localStorage.setItem('acertouReconhecimento', 'true');
+    }
+  }, [allCorrect]);
 
   const commonLayout = {
     font: { color: '#4B5563' },
