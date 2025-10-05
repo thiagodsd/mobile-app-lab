@@ -166,7 +166,7 @@ export default function IdentificacaoDePadraoPage() {
                     data={[
                       {
                         ...dist.data,
-                        type: ('type' in dist.data && dist.data.type === 'bar') ? 'bar' : 'scatter',
+                        type: 'scatter',
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         mode: (('mode' in dist.data && dist.data.mode) || 'lines') as any,
                         line: { color: '#374151', width: 2 },
@@ -181,9 +181,17 @@ export default function IdentificacaoDePadraoPage() {
                         showgrid: false,
                         zeroline: false,
                         color: '#6B7280',
-                        tickformat: ('type' in dist.data && dist.data.type === 'bar') ? 'd' : '.1f',
-                        tickmode: ('type' in dist.data && dist.data.type === 'bar') ? 'array' : undefined,
-                        tickvals: ('type' in dist.data && dist.data.type === 'bar') ? dist.data.x : undefined,
+                        tickformat: ['Binomial', 'Poisson', 'Bernoulli'].includes(dist.name) ? 'd' : '.1f',
+                        ...(dist.name === 'Bernoulli' ? {
+                          tickmode: 'array',
+                          tickvals: [0, 1],
+                          range: [-0.5, 1.5]
+                        } : ['Binomial', 'Poisson'].includes(dist.name) ? {
+                          range: [
+                            (dist.data.x[0] as number) - 1,
+                            (dist.data.x[dist.data.x.length - 1] as number) + 1
+                          ]
+                        } : {})
                       },
                       yaxis: { visible: false },
                       margin: { t: 10, b: 30, l: 10, r: 10 },
@@ -495,26 +503,33 @@ function generateBinomial() {
   const x = [], y = [];
   const n = 10, p = 0.5;
   for (let k = 0; k <= n; k++) {
-    x.push(k);
-    y.push(binomialPMF(n, k, p));
+    const prob = binomialPMF(n, k, p);
+    x.push(k, k, k);
+    y.push(0, prob, 0);
   }
-  return { x, y, type: 'bar', mode: undefined };
+  return { x, y, mode: 'lines' };
 }
 
 function generatePoisson() {
   const x = [], y = [];
   const lambda = 3;
   for (let k = 0; k <= 10; k++) {
-    x.push(k);
-    y.push(poissonPMF(k, lambda));
+    const prob = poissonPMF(k, lambda);
+    x.push(k, k, k);
+    y.push(0, prob, 0);
   }
-  return { x, y, type: 'bar', mode: undefined };
+  return { x, y, mode: 'lines' };
 }
 
 function generateBernoulli() {
-  const x = [0, 1];
-  const y = [0.3, 0.7]; // p = 0.7 de sucesso
-  return { x, y, type: 'bar', mode: undefined };
+  const x: number[] = [], y: number[] = [];
+  const values = [0, 1];
+  const probs = [0.3, 0.7]; // p = 0.7 de sucesso
+  values.forEach((val, i) => {
+    x.push(val, val, val);
+    y.push(0, probs[i], 0);
+  });
+  return { x, y, mode: 'lines' };
 }
 
 // Funções auxiliares
