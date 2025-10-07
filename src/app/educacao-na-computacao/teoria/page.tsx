@@ -72,24 +72,118 @@ export default function TeoriaPage() {
           Distribuições de Probabilidade
         </h1>
 
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-screen object-contain"
+        >
+          <source src="/animations/BernoulliDistribution.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos HTML5.
+        </video>
+
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-screen object-contain"
+        >
+          <source src="/animations/SimpleNormalDistribution.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos HTML5.
+        </video>
+
+        {/* <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full my-8"
+        >
+          <source src="/animations/MeanCalculation.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos HTML5.
+        </video> */}
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-light text-black mb-4">Processos e Distribuições</h2>
+
+          <p className="text-black mb-4 leading-relaxed">
+            Em probabilidade e estatística, uma função densidade de probabilidade é como se fosse uma "fabriquinha"
+            que produz números aleatórios seguindo um padrão específico. Mas o que realmente decide qual será a
+            distribuição de uma variável aleatória é o <strong>processo</strong> que a gera.
+          </p>
+
+          <p className="text-black mb-4 leading-relaxed">
+            Alguns exemplos de processos e suas distribuições:
+          </p>
+
+          <ul className="list-disc list-inside text-black mb-6 space-y-2 ml-4">
+            <li>
+              <strong>Lançar uma moeda:</strong> O processo de jogar uma moeda justa gera uma distribuição de Bernoulli.
+              Cada lançamento tem dois resultados possíveis (cara ou coroa) com probabilidade fixa.
+            </li>
+            <li>
+              <strong>Medir altura de pessoas:</strong> O processo de medir alturas em uma população gera aproximadamente
+              uma distribuição normal. A maioria das pessoas tem altura próxima à média, com valores extremos sendo raros.
+            </li>
+            <li>
+              <strong>Contar carros em uma rodovia:</strong> O processo de contar quantos carros passam por minuto
+              gera uma distribuição de Poisson. Os eventos (carros passando) ocorrem de forma independente ao longo do tempo.
+            </li>
+            <li>
+              <strong>Tempo até uma lâmpada queimar:</strong> O processo de desgaste natural gera uma distribuição exponencial.
+              A probabilidade de falha é constante ao longo do tempo.
+            </li>
+          </ul>
+
+          <p className="text-black mb-6 leading-relaxed">
+            Compreender o <em>processo</em> por trás dos dados é fundamental para escolher a distribuição de probabilidade
+            adequada e fazer previsões corretas.
+          </p>
+        </section>
+
         <section className="mb-12">
           <h2 className="text-2xl font-light text-black mb-4">Função Densidade de Probabilidade</h2>
 
           <p className="text-black mb-4 leading-relaxed">
-            Uma função densidade de probabilidade (FDP) descreve a probabilidade relativa de uma variável aleatória contínua assumir determinado valor. Toda FDP possui três propriedades fundamentais:
+            Uma função densidade de probabilidade (FDP) descreve a probabilidade relativa de uma variável aleatória
+            contínua assumir determinado valor. Pense nela como uma curva que mostra quais valores são mais prováveis
+            de ocorrer: quanto maior a altura da curva em um ponto, maior a chance de observar valores próximos a ele.
           </p>
 
-          <ol className="list-decimal list-inside text-black mb-6 space-y-2">
+          <p className="text-black mb-4 leading-relaxed">
+            Toda FDP precisa satisfazer duas propriedades básicas:
+          </p>
+
+          <ol className="list-decimal list-inside text-black mb-6 space-y-3 ml-4">
             <li>
-              É sempre não-negativa: <InlineMath math="f(x) \geq 0" /> para todo <InlineMath math="x" />
+              <strong>Não-negatividade:</strong> A função nunca pode ser negativa, <InlineMath math="f(x) \geq 0" />
+              para todo <InlineMath math="x" />. Isso faz sentido porque probabilidade não pode ser negativa.
             </li>
             <li>
-              A área total sob a curva é sempre igual a 1: <InlineMath math="\int_{-\infty}^{\infty} f(x) \, dx = 1" />
-            </li>
-            <li>
-              A probabilidade de um valor estar em um intervalo <InlineMath math="[a,b]" /> é dada por: <InlineMath math="P(a \leq X \leq b) = \int_{a}^{b} f(x) \, dx" />
+              <strong>Normalização:</strong> A área total sob a curva deve ser igual a 1,
+              <InlineMath math="\int_{-\infty}^{\infty} f(x) \, dx = 1" />.
+              Isso garante que a soma de todas as probabilidades possíveis seja 100%.
             </li>
           </ol>
+
+          <h3 className="text-xl font-light text-black mb-3 mt-8">Calculando Probabilidades com a FDP</h3>
+
+          <p className="text-black mb-4 leading-relaxed">
+            A interpretação mais importante de uma FDP é que <strong>a probabilidade de uma variável cair em um
+            intervalo é dada pela área sob a curva naquele intervalo</strong>. Matematicamente:
+          </p>
+
+          <div className="my-6">
+            <BlockMath math="P(a \leq X \leq b) = \int_{a}^{b} f(x) \, dx" />
+          </div>
+
+          <p className="text-black mb-6 leading-relaxed">
+            Por exemplo, se você quer saber a probabilidade da altura de uma pessoa estar entre 1,60m e 1,80m,
+            você calcula a área sob a curva da distribuição de alturas nesse intervalo. Quanto maior a área,
+            maior a probabilidade!
+          </p>
 
           <h2 className="text-2xl font-light text-black mb-4 mt-8">Distribuição Normal</h2>
 
@@ -97,28 +191,6 @@ export default function TeoriaPage() {
             A distribuição normal descreve como muitos fenômenos naturais se comportam.
             A maioria dos valores fica perto da média, e valores extremos são raros.
           </p>
-
-          <div className="my-8 bg-gray-50 rounded-xl p-6">
-            <h3 className="text-xl font-light text-black mb-4">Visualizando a Formação da Distribuição</h3>
-            <p className="text-black mb-4 text-sm leading-relaxed">
-              A animação abaixo mostra como números aleatórios gerados a partir de uma função f(x)
-              vão gradualmente formando um histograma que segue a distribuição normal.
-              À medida que mais amostras são adicionadas, o histograma se aproxima da curva teórica (em vermelho).
-            </p>
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full rounded-lg shadow-md"
-            >
-              <source src="/animations/NormalDistributionAnimated.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeos HTML5.
-            </video>
-            <p className="text-gray-600 text-xs mt-2 text-center italic">
-              Animação gerada com Manim mostrando a convergência para a distribuição normal
-            </p>
-          </div>
 
           <div className="my-6">
             <BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
@@ -131,7 +203,7 @@ export default function TeoriaPage() {
           <div className="my-8 space-y-4">
             <div>
               <label className="flex items-center justify-between text-black mb-2">
-                <span><InlineMath math={`\\mu = ${mu}`} /></span>
+                <span><InlineMath math={`\\mu = ${mu.toFixed(1)}`} /></span>
               </label>
               <input
                 type="range"
@@ -141,6 +213,7 @@ export default function TeoriaPage() {
                 value={mu}
                 onChange={(e) => setMu(parseFloat(e.target.value))}
                 className="w-full"
+                suppressHydrationWarning
               />
             </div>
 
@@ -156,6 +229,7 @@ export default function TeoriaPage() {
                 value={sigma}
                 onChange={(e) => setSigma(parseFloat(e.target.value))}
                 className="w-full"
+                suppressHydrationWarning
               />
             </div>
           </div>
