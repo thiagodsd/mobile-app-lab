@@ -98,6 +98,28 @@ export default function TeoriaPage() {
             A maioria dos valores fica perto da média, e valores extremos são raros.
           </p>
 
+          <div className="my-8 bg-gray-50 rounded-xl p-6">
+            <h3 className="text-xl font-light text-black mb-4">Visualizando a Formação da Distribuição</h3>
+            <p className="text-black mb-4 text-sm leading-relaxed">
+              A animação abaixo mostra como números aleatórios gerados a partir de uma função f(x)
+              vão gradualmente formando um histograma que segue a distribuição normal.
+              À medida que mais amostras são adicionadas, o histograma se aproxima da curva teórica (em vermelho).
+            </p>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full rounded-lg shadow-md"
+            >
+              <source src="/animations/NormalDistributionAnimated.mp4" type="video/mp4" />
+              Seu navegador não suporta vídeos HTML5.
+            </video>
+            <p className="text-gray-600 text-xs mt-2 text-center italic">
+              Animação gerada com Manim mostrando a convergência para a distribuição normal
+            </p>
+          </div>
+
           <div className="my-6">
             <BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
           </div>

@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Next.js 15.5.4 project focused on creating an interactive page about probability distributions. The project uses the App Router architecture with TypeScript, Tailwind CSS v4, and is optimized with Turbopack for faster development builds.
 
+These are some example URLs from the deployed project that illustrate its structure and content:
+1. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/conhecimento-previo/
+2. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/teoria/
+3. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/teoria/reconhecimento-padrao/
+4. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/identificacao-de-padrao/
+
 ## Development Commands
 
 - **Start development server**: `npm run dev` (runs with Turbopack optimization on http://localhost:3000)
