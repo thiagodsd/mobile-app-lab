@@ -13,7 +13,7 @@ class NormalDistributionHistogram(Scene):
         # Criar eixos
         axes = Axes(
             x_range=[-4, 4, 1],
-            y_range=[0, 0.5, 0.1],
+            y_range=[0, 0.3, 0.1],
             x_length=10,
             y_length=6,
             axis_config={"include_tip": False},
@@ -120,7 +120,7 @@ class NormalDistributionAnimated(Scene):
         # Criar eixos
         axes = Axes(
             x_range=[-4, 4, 1],
-            y_range=[0, 0.5, 0.1],
+            y_range=[0, 0.3, 0.1],
             x_length=11,
             y_length=6,
             axis_config={"include_tip": False, "color": GRAY},
