@@ -72,14 +72,11 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Criar documento
+    // Criar documento (sem coletar dados pessoais como IP ou User Agent)
     const docData = {
       estudouEstatistica: body.estudouEstatistica,
       onde: body.onde, // Agora é um array de strings
-      timestamp: Timestamp.now(),
-      userAgent: request.headers.get('user-agent') || 'unknown',
-      ip: request.headers.get('x-forwarded-for') ||
-          request.headers.get('x-real-ip') || 'unknown'
+      timestamp: Timestamp.now()
     };
 
     const docRef = await addDoc(collection(db, 'conhecimento_previo'), docData);
