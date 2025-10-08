@@ -109,7 +109,7 @@ export default function TeoriaPage() {
           <h2 className="text-2xl font-light text-black mb-4">Processos e Distribuições</h2>
 
           <p className="text-black mb-4 leading-relaxed">
-            Em probabilidade e estatística, uma função densidade de probabilidade é como se fosse uma "fabriquinha"
+            Em probabilidade e estatística, uma função densidade de probabilidade é como se fosse uma &ldquo;fabriquinha&rdquo;
             que produz números aleatórios seguindo um padrão específico. Mas o que realmente decide qual será a
             distribuição de uma variável aleatória é o <strong>processo</strong> que a gera.
           </p>
