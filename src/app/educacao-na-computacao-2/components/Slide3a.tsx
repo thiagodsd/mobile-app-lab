@@ -9,7 +9,6 @@ export default function Slide3a() {
       }}>
         <h2 style={{
           fontFamily: 'Latin Modern Roman, Computer Modern, serif',
-          fontSize: '3em',
           color: '#333',
           textAlign: 'center',
           lineHeight: '1.4'
