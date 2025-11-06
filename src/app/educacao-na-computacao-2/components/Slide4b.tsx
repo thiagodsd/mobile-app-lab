@@ -12,7 +12,7 @@ export default function Slide4b() {
       }}>
         <h2 style={{
           fontFamily: 'Latin Modern Roman, Computer Modern, serif',
-          fontSize: '3em',
+          fontSize: '2em',
           marginBottom: '0.5em',
           color: '#333',
           textAlign: 'center'

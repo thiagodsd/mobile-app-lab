@@ -10,7 +10,7 @@ export default function Slide3d() {
       }}>
         <h3 style={{
           fontFamily: 'Latin Modern Roman, Computer Modern, serif',
-          fontSize: '3em',
+          fontSize: '1.4em',
           marginBottom: '1em',
           color: '#333',
           textAlign: 'center'
