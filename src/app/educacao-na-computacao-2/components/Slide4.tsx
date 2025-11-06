@@ -12,10 +12,8 @@ export default function Slide4() {
       }}>
         <h2 style={{
           fontFamily: 'Latin Modern Roman, Computer Modern, serif',
-          fontSize: '2.5em',
           color: '#333',
-          textAlign: 'center',
-          margin: 0
+          textAlign: 'center'
         }}>
           O que está acontecendo aqui?
         </h2>

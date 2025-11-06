@@ -12,8 +12,6 @@ export default function Slide4d() {
       }}>
         <h3 style={{
           fontFamily: 'Latin Modern Roman, Computer Modern, serif',
-          fontSize: '2em',
-          marginBottom: '0.5em',
           color: '#333',
           textAlign: 'center'
         }}>
