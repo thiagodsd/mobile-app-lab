@@ -85,7 +85,7 @@ export default function Slide4c() {
               }}>
                 <li>Sem 5s no baralho: <strong>+3.29%</strong> de vantagem</li>
                 <li>Muitas cartas 10: <strong>+3.94%</strong> de vantagem</li>
-                <li>Rastreando cartas "tens": vantagem em <strong>~50%</strong> das situações</li>
+                <li>Rastreando cartas &quot;tens&quot;: vantagem em <strong>~50%</strong> das situações</li>
               </ul>
             </div>
 
