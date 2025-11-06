@@ -332,7 +332,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             </motion.button>
           )}
 
-          {(!canPlay || gameState.gamesPlayed >= 10) && (
+          {(!canPlay || gameState.gamesPlayed >= 6) && (
             <motion.div
               className="space-y-4"
               initial={{ opacity: 0, scale: 0.9 }}
