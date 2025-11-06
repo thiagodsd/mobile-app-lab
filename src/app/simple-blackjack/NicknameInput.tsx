@@ -29,7 +29,15 @@ export default function NicknameInput({ onSubmit }: NicknameInputProps) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-full max-w-md p-8">
-        <h1 className="text-8xl font-light text-black mb-2 text-center">21</h1>
+        <div className="mb-8">
+          <h1 className="text-9xl font-light text-black mb-3 text-center">21</h1>
+          <div className="flex justify-center gap-3 mb-6">
+            <span className="text-4xl text-black">♠</span>
+            <span className="text-4xl text-red-600">♥</span>
+            <span className="text-4xl text-black">♣</span>
+            <span className="text-4xl text-red-600">♦</span>
+          </div>
+        </div>
         <p className="text-gray-600 mb-8 text-center font-light">Digite seu apelido para começar</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -54,17 +62,6 @@ export default function NicknameInput({ onSubmit }: NicknameInputProps) {
             Começar a Jogar
           </button>
         </form>
-
-        <div className="mt-8 p-4 border border-gray-300 rounded">
-          <h2 className="text-sm font-medium text-black mb-2">Regras do Jogo</h2>
-          <ul className="text-xs text-gray-600 space-y-1 font-light">
-            <li>• Saldo inicial: $100</li>
-            <li>• Máximo de 10 rodadas</li>
-            <li>• Baralho único, sem embaralhar</li>
-            <li>• Dealer para em 17</li>
-            <li>• Blackjack paga 2:1</li>
-          </ul>
-        </div>
       </div>
     </div>
   );
