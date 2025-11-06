@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useBlackjackGame } from './useBlackjackGame';
 import { updatePlayer, saveGameState, clearGameState } from './playerService';
 import Card from './Card';
+import AnimatedMessage, { MessageType } from './AnimatedMessage';
 import { PlayerData } from './types';
 
 interface GameProps {
@@ -22,6 +24,20 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
   const [stats, setStats] = useState(initialStats || { wins: 0, losses: 0, pushes: 0 });
 
   const canPlay = gameState.gamesPlayed < 10 && gameState.balance > 0;
+
+  // Map game status to message type
+  const getMessageType = (): MessageType => {
+    if (gameState.gameStatus === 'playerWin' || gameState.gameStatus === 'dealerBust') {
+      return 'success';
+    }
+    if (gameState.gameStatus === 'dealerWin' || gameState.gameStatus === 'playerBust') {
+      return 'error';
+    }
+    if (gameState.gameStatus === 'push') {
+      return 'warning';
+    }
+    return 'info';
+  };
 
   useEffect(() => {
     if (gameState.gameStatus === 'playerWin' || gameState.gameStatus === 'dealerBust') {
@@ -63,30 +79,106 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
       <div className="max-w-4xl mx-auto mb-8">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-6xl font-light text-black">21</h1>
-          <div className="text-right">
-            <p className="text-sm text-gray-600 font-light">Jogador: {player.nickname}</p>
-            <p className="text-sm text-gray-600 font-light">Rodada: {gameState.gamesPlayed}/10</p>
+          <div className="flex items-center gap-8">
+            <div className="flex gap-4">
+              <div className="text-center">
+                <div className="relative w-16 h-24 bg-gray-800 rounded border-2 border-gray-900 flex items-center justify-center mb-1">
+                  <span className="text-xs text-white font-light">Baralho</span>
+                </div>
+                <p className="text-sm text-gray-600 font-light">{gameState.deck.length} cartas</p>
+              </div>
+              <div className="text-center">
+                <div className="relative w-16 h-24 bg-gray-200 rounded border-2 border-gray-400 flex items-center justify-center mb-1">
+                  <span className="text-xs text-gray-500 font-light">Descarte</span>
+                </div>
+                <p className="text-sm text-gray-600 font-light">{gameState.discardPile?.length || 0} cartas</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-600 font-light">Jogador: {player.nickname}</p>
+              <p className="text-sm text-gray-600 font-light">Rodada: {gameState.gamesPlayed}/10</p>
+            </div>
           </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-4 gap-4 mb-8">
-          <div className="border-2 border-gray-800 rounded p-4 text-center">
-            <p className="text-2xl font-light text-black">${gameState.balance}</p>
+          <motion.div
+            className="rounded p-4 text-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={gameState.balance}
+                className="text-2xl font-light text-black"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2 }}
+              >
+                ${gameState.balance}
+              </motion.p>
+            </AnimatePresence>
             <p className="text-xs text-gray-600 font-light">Saldo</p>
-          </div>
-          <div className="border border-gray-300 rounded p-4 text-center">
-            <p className="text-2xl font-light text-green-600">{stats.wins}</p>
+          </motion.div>
+          <motion.div
+            className="rounded p-4 text-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={stats.wins}
+                className="text-2xl font-light text-green-600"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ type: 'spring', bounce: 0.6 }}
+              >
+                {stats.wins}
+              </motion.p>
+            </AnimatePresence>
             <p className="text-xs text-gray-600 font-light">Vitórias</p>
-          </div>
-          <div className="border border-gray-300 rounded p-4 text-center">
-            <p className="text-2xl font-light text-red-600">{stats.losses}</p>
+          </motion.div>
+          <motion.div
+            className="rounded p-4 text-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={stats.losses}
+                className="text-2xl font-light text-red-600"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ type: 'spring', bounce: 0.6 }}
+              >
+                {stats.losses}
+              </motion.p>
+            </AnimatePresence>
             <p className="text-xs text-gray-600 font-light">Derrotas</p>
-          </div>
-          <div className="border border-gray-300 rounded p-4 text-center">
-            <p className="text-2xl font-light text-gray-600">{stats.pushes}</p>
+          </motion.div>
+          <motion.div
+            className="rounded p-4 text-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={stats.pushes}
+                className="text-2xl font-light text-gray-600"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ type: 'spring', bounce: 0.6 }}
+              >
+                {stats.pushes}
+              </motion.p>
+            </AnimatePresence>
             <p className="text-xs text-gray-600 font-light">Empates</p>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -108,6 +200,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
                 key={`${card.suit}-${card.rank}-${index}`}
                 card={card}
                 hidden={gameState.gameStatus === 'playing' && index === 1}
+                index={index}
               />
             ))}
           </div>
@@ -123,64 +216,102 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
           </div>
           <div className="flex gap-2">
             {gameState.playerHand.map((card, index) => (
-              <Card key={`${card.suit}-${card.rank}-${index}`} card={card} />
+              <Card
+                key={`${card.suit}-${card.rank}-${index}`}
+                card={card}
+                index={index}
+              />
             ))}
           </div>
         </div>
 
         {/* Message */}
-        <div className="mb-8 p-4 bg-gray-100 rounded text-center">
-          <p className="text-lg font-light text-black">{gameState.message}</p>
+        <div className="mb-8">
+          <AnimatedMessage
+            message={gameState.message}
+            type={getMessageType()}
+          />
         </div>
 
         {/* Controls */}
         <div className="space-y-4">
           {gameState.gameStatus === 'betting' && canPlay && (
-            <div className="space-y-4">
+            <motion.div
+              className="space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <div className="flex items-center justify-center gap-4">
-                <button
+                <motion.button
                   onClick={() => handleBetChange(-5)}
-                  className="px-4 py-2 border-2 border-gray-800 rounded hover:bg-gray-100 font-light"
+                  className="px-4 py-2 border-2 border-gray-800 rounded font-light text-black disabled:opacity-50"
                   disabled={betAmount <= 5}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   -$5
-                </button>
+                </motion.button>
                 <div className="text-center">
-                  <p className="text-3xl font-light text-black">${betAmount}</p>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={betAmount}
+                      className="text-3xl font-light text-black"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      ${betAmount}
+                    </motion.p>
+                  </AnimatePresence>
                   <p className="text-xs text-gray-600 font-light">Valor da Aposta</p>
                 </div>
-                <button
+                <motion.button
                   onClick={() => handleBetChange(5)}
-                  className="px-4 py-2 border-2 border-gray-800 rounded hover:bg-gray-100 font-light"
+                  className="px-4 py-2 border-2 border-gray-800 rounded font-light text-black disabled:opacity-50"
                   disabled={betAmount >= gameState.balance}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   +$5
-                </button>
+                </motion.button>
               </div>
-              <button
+              <motion.button
                 onClick={() => placeBet(betAmount)}
-                className="w-full py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-light"
+                className="w-full py-3 bg-black text-white rounded font-light"
+                whileHover={{ scale: 1.02, backgroundColor: '#374151' }}
+                whileTap={{ scale: 0.98 }}
               >
                 Fazer Aposta
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           )}
 
           {gameState.gameStatus === 'playing' && (
-            <div className="flex gap-4">
-              <button
+            <motion.div
+              className="flex gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <motion.button
                 onClick={hit}
-                className="flex-1 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-light"
+                className="flex-1 py-3 bg-black text-white rounded font-light"
+                whileHover={{ scale: 1.02, backgroundColor: '#374151' }}
+                whileTap={{ scale: 0.98 }}
               >
                 Pedir Carta
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={stand}
-                className="flex-1 py-3 border-2 border-gray-800 rounded hover:bg-gray-100 transition-colors font-light text-black"
+                className="flex-1 py-3 border-2 border-gray-800 rounded font-light text-black"
+                whileHover={{ scale: 1.02, backgroundColor: '#f3f4f6' }}
+                whileTap={{ scale: 0.98 }}
               >
                 Parar
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           )}
 
           {(gameState.gameStatus === 'playerWin' ||
@@ -188,17 +319,32 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             gameState.gameStatus === 'push' ||
             gameState.gameStatus === 'playerBust' ||
             gameState.gameStatus === 'dealerBust') && canPlay && (
-            <button
+            <motion.button
               onClick={newGame}
-              className="w-full py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-light"
+              className="w-full py-3 bg-black text-white rounded font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              whileHover={{ scale: 1.02, backgroundColor: '#374151' }}
+              whileTap={{ scale: 0.98 }}
             >
               Próxima Rodada
-            </button>
+            </motion.button>
           )}
 
           {(!canPlay || gameState.gamesPlayed >= 10) && (
-            <div className="space-y-4">
-              <div className="p-6 border-2 border-gray-800 rounded text-center">
+            <motion.div
+              className="space-y-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.div
+                className="p-6 border-2 border-gray-800 rounded text-center"
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
                 <h3 className="text-2xl font-light text-black mb-4">Fim do Jogo</h3>
                 <p className="text-gray-600 font-light mb-2">
                   Saldo Final: <span className="text-black font-medium">${gameState.balance}</span>
@@ -209,14 +355,19 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
                 <p className="text-gray-600 font-light mb-2">
                   Total de Derrotas: <span className="text-red-600 font-medium">{stats.losses}</span>
                 </p>
-              </div>
-              <button
+              </motion.div>
+              <motion.button
                 onClick={handleGameEnd}
-                className="w-full py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-light"
+                className="w-full py-3 bg-black text-white rounded font-light"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ scale: 1.02, backgroundColor: '#374151' }}
+                whileTap={{ scale: 0.98 }}
               >
                 Salvar e Sair
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           )}
         </div>
 
