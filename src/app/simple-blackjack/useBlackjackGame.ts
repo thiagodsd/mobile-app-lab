@@ -204,8 +204,8 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
   const stand = useCallback(() => {
     if (gameState.gameStatus !== 'playing') return;
 
-    let newDeck = [...gameState.deck];
-    let newDealerHand = [...gameState.dealerHand];
+    const newDeck = [...gameState.deck];
+    const newDealerHand = [...gameState.dealerHand];
     let newDealerScore = calculateScore(newDealerHand);
 
     while (newDealerScore < 17) {

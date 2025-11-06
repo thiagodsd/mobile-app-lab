@@ -6,12 +6,12 @@ import { useBlackjackGame } from './useBlackjackGame';
 import { updatePlayer, saveGameState, clearGameState } from './playerService';
 import Card from './Card';
 import AnimatedMessage, { MessageType } from './AnimatedMessage';
-import { PlayerData } from './types';
+import { PlayerData, GameState } from './types';
 
 interface GameProps {
   player: PlayerData;
   onGameEnd: () => void;
-  initialGameState?: any;
+  initialGameState?: GameState;
   initialStats?: { wins: number; losses: number; pushes: number };
 }
 
