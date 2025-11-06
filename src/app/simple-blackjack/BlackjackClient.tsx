@@ -28,7 +28,7 @@ export default function BlackjackClient() {
         });
 
         // Player exists, ask if they want to continue or start fresh
-        if (existingPlayer.gamesPlayed >= 10 || existingPlayer.balance <= 0) {
+        if (existingPlayer.gamesPlayed >= 6 || existingPlayer.balance <= 0) {
           console.log('Player finished, creating new session');
           // Reset player for new game
           const newPlayer = await createPlayer(nickname + '-' + Date.now());
@@ -144,7 +144,7 @@ export default function BlackjackClient() {
               <span className="font-medium text-black">Saldo:</span> ${pendingPlayer.balance}
             </p>
             <p className="text-sm text-gray-600 font-light mb-1">
-              <span className="font-medium text-black">Rodada:</span> {pendingPlayer.savedGameState?.gamesPlayed || 0}/10
+              <span className="font-medium text-black">Rodada:</span> {pendingPlayer.savedGameState?.gamesPlayed || 0}/6
             </p>
           </div>
         </div>

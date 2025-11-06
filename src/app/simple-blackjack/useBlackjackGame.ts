@@ -253,11 +253,11 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
   }, [gameState]);
 
   const newGame = useCallback(() => {
-    if (gameState.gamesPlayed >= 10) {
+    if (gameState.gamesPlayed >= 6) {
       setGameState({
         ...gameState,
         gameStatus: 'betting',
-        message: 'Fim de jogo! Você jogou todas as 10 rodadas.',
+        message: 'Fim de jogo! Você jogou todas as 6 rodadas.',
       });
       return;
     }
