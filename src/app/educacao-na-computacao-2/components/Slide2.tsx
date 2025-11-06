@@ -9,7 +9,7 @@ export default function Slide2() {
       }}>
         <h2 style={{
           fontFamily: 'Latin Modern Roman, Computer Modern, serif',
-          fontSize: '3em',
+          fontSize: '2em',
           marginBottom: '1.5em',
           color: '#333'
         }}>
