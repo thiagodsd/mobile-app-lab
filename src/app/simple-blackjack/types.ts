@@ -9,6 +9,7 @@ export interface Card {
 
 export interface GameState {
   deck: Card[];
+  discardPile: Card[];
   playerHand: Card[];
   dealerHand: Card[];
   playerScore: number;

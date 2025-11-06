@@ -18,15 +18,27 @@ function createDeck(): Card[] {
       deck.push({ suit, rank, value });
     }
   }
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Creating new deck with 52 cards');
+  }
+
   return shuffleDeck(deck);
 }
 
 function shuffleDeck(deck: Card[]): Card[] {
   const shuffled = [...deck];
+
+  // Fisher-Yates shuffle algorithm - proven to be uniformly random
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Deck shuffled. First card:', `${shuffled[shuffled.length - 1].rank}${shuffled[shuffled.length - 1].suit}`);
+  }
+
   return shuffled;
 }
 
@@ -42,24 +54,80 @@ function calculateScore(hand: Card[]): number {
   return score;
 }
 
+// Utility function to validate deck integrity (no duplicate cards)
+function validateDeckIntegrity(gameState: GameState): { isValid: boolean; message: string } {
+  const allCards = [
+    ...gameState.deck,
+    ...gameState.playerHand,
+    ...gameState.dealerHand,
+    ...(gameState.discardPile || []),
+  ];
+
+  const cardStrings = allCards.map(card => `${card.suit}${card.rank}`);
+  const uniqueCards = new Set(cardStrings);
+
+  if (cardStrings.length !== uniqueCards.size) {
+    return {
+      isValid: false,
+      message: `Duplicate cards detected! Total: ${cardStrings.length}, Unique: ${uniqueCards.size}`,
+    };
+  }
+
+  // A full deck should have 52 cards
+  if (allCards.length > 52) {
+    return {
+      isValid: false,
+      message: `Too many cards! Total: ${allCards.length}, Expected: ≤52`,
+    };
+  }
+
+  return { isValid: true, message: 'Deck integrity is valid' };
+}
+
 export function useBlackjackGame(initialBalance: number = 100, savedState?: GameState | null) {
-  const [gameState, setGameState] = useState<GameState>(
-    savedState || {
-      deck: createDeck(),
-      playerHand: [],
-      dealerHand: [],
-      playerScore: 0,
-      dealerScore: 0,
-      bet: 0,
-      balance: initialBalance,
-      gamesPlayed: 0,
-      gameStatus: 'betting',
-      message: 'Faça sua aposta para começar',
+  const initialState: GameState = savedState ? {
+    ...savedState,
+    discardPile: savedState.discardPile || [],
+  } : {
+    deck: createDeck(),
+    discardPile: [],
+    playerHand: [],
+    dealerHand: [],
+    playerScore: 0,
+    dealerScore: 0,
+    bet: 0,
+    balance: initialBalance,
+    gamesPlayed: 0,
+    gameStatus: 'betting' as const,
+    message: 'Faça sua aposta para começar',
+  };
+
+  // Validate initial state in development
+  if (process.env.NODE_ENV === 'development') {
+    const validation = validateDeckIntegrity(initialState);
+    if (!validation.isValid) {
+      console.error('Deck integrity validation failed:', validation.message);
+    } else {
+      console.log('Deck integrity validated:', validation.message);
+      console.log(`Deck stats - Total cards: ${initialState.deck.length + initialState.playerHand.length + initialState.dealerHand.length + (initialState.discardPile?.length || 0)}`);
+      console.log(`First 5 cards in deck:`, initialState.deck.slice(-5).map(c => `${c.rank}${c.suit}`));
     }
-  );
+  }
+
+  const [gameState, setGameState] = useState<GameState>(initialState);
 
   const placeBet = useCallback((amount: number) => {
     if (amount > gameState.balance) {
+      return;
+    }
+
+    // Validate that there are at least 4 cards in the deck
+    if (gameState.deck.length < 4) {
+      setGameState({
+        ...gameState,
+        gameStatus: 'betting',
+        message: 'Não há cartas suficientes no baralho. Fim do jogo!',
+      });
       return;
     }
 
@@ -94,6 +162,17 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
 
   const hit = useCallback(() => {
     if (gameState.gameStatus !== 'playing') return;
+
+    // Validate that there is at least one card in the deck
+    if (gameState.deck.length < 1) {
+      setGameState({
+        ...gameState,
+        gameStatus: 'betting',
+        message: 'Não há cartas suficientes no baralho. Fim do jogo!',
+        gamesPlayed: gameState.gamesPlayed + 1,
+      });
+      return;
+    }
 
     const newDeck = [...gameState.deck];
     const newCard = newDeck.pop()!;
@@ -130,6 +209,11 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
     let newDealerScore = calculateScore(newDealerHand);
 
     while (newDealerScore < 17) {
+      // Check if there are cards available
+      if (newDeck.length < 1) {
+        // If no cards available, dealer must stand with current score
+        break;
+      }
       const newCard = newDeck.pop()!;
       newDealerHand.push(newCard);
       newDealerScore = calculateScore(newDealerHand);
@@ -178,9 +262,26 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
       return;
     }
 
+    // Move current hands to discard pile
+    const newDiscardPile = [
+      ...(gameState.discardPile || []),
+      ...gameState.playerHand,
+      ...gameState.dealerHand,
+    ];
+
+    // Check if there are enough cards in the deck (minimum 4 cards needed to start)
+    if (gameState.deck.length < 4) {
+      setGameState({
+        ...gameState,
+        gameStatus: 'betting',
+        message: 'Não há cartas suficientes no baralho. Fim do jogo!',
+      });
+      return;
+    }
+
     setGameState({
       ...gameState,
-      deck: gameState.deck.length < 20 ? createDeck() : gameState.deck,
+      discardPile: newDiscardPile,
       playerHand: [],
       dealerHand: [],
       playerScore: 0,
