@@ -53,6 +53,7 @@ export default function EducacaoNaComputacao2() {
   return (
     <>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
       <div className="reveal">
         <div className="slides">
           {/* Slide 1 - Probabilidade de tirar carta 3 */}
