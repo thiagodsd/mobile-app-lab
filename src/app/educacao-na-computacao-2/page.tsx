@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import 'katex/dist/katex.min.css';
+import 'reveal.js/dist/reveal.css';
+import 'reveal.js/dist/theme/white.css';
 import './minimal-theme.css';
 
 // Import slide components
@@ -52,8 +54,6 @@ export default function EducacaoNaComputacao2() {
 
   return (
     <>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
       <div className="reveal">
         <div className="slides">
           {/* Slide 1 - Probabilidade de tirar carta 3 */}
