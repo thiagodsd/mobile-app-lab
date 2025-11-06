@@ -11,7 +11,7 @@ import { PlayerData, GameState } from './types';
 interface GameProps {
   player: PlayerData;
   onGameEnd: () => void;
-  initialGameState?: GameState;
+  initialGameState?: GameState | null;
   initialStats?: { wins: number; losses: number; pushes: number };
 }
 
