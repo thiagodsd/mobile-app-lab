@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import 'katex/dist/katex.min.css';
 import 'reveal.js/dist/reveal.css';
-import 'reveal.js/dist/theme/white.css';
-import './minimal-theme.css';
+import 'reveal.js/dist/theme/serif.css';
 
 // Import slide components
 import Slide1 from './components/Slide1';
@@ -34,8 +33,8 @@ export default function EducacaoNaComputacao2() {
         transition: 'fade',
         transitionSpeed: 'slow',
         controls: true,
-        progress: false,
-        slideNumber: false,
+        progress: true,
+        slideNumber: true,
         center: true,
         width: '100%',
         height: '100%',
