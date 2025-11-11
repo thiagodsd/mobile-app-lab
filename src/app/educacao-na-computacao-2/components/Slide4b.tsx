@@ -1,9 +1,10 @@
 export default function Slide4b() {
   return (
-    <section>
+    <section className="flex flex-col gap-4">
       <h2>Contagem de Cartas</h2>
 
-      <article>
+      <div className="flex flex-row gap-8 justify-center">
+        <article className="flex flex-col">
         <a
           href="https://drive.google.com/file/d/1aDa8SPbw9WhAtJ2q0a32POQXuAIDilwn/view?usp=sharing"
           target="_blank"
@@ -38,9 +39,9 @@ export default function Slide4b() {
             </a>
           </dd>
         </dl>
-      </article>
+        </article>
 
-      <article>
+        <article className="flex flex-col">
         <a
           href="https://drive.google.com/file/d/1qDfbnwQFV2zLpMAqyY0NilPej4OewYa4/view?usp=sharing"
           target="_blank"
@@ -75,7 +76,8 @@ export default function Slide4b() {
             </a>
           </dd>
         </dl>
-      </article>
+        </article>
+      </div>
     </section>
   );
 }
