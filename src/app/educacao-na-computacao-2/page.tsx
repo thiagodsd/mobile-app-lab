@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import 'katex/dist/katex.min.css';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/serif.css';
 
@@ -10,6 +9,7 @@ import Slide1 from './components/Slide1';
 import Slide2 from './components/Slide2';
 import Slide3a from './components/Slide3a';
 import Slide3b from './components/Slide3b';
+import Slide3b2 from './components/Slide3b2';
 import Slide3c from './components/Slide3c';
 import Slide3d from './components/Slide3d';
 import Slide4 from './components/Slide4';
@@ -24,9 +24,13 @@ export default function EducacaoNaComputacao2() {
   useEffect(() => {
     setIsClient(true);
 
-    // Importar Reveal.js apenas no cliente
-    import('reveal.js').then((RevealModule) => {
+    // Importar Reveal.js e plugin Math apenas no cliente
+    Promise.all([
+      import('reveal.js'),
+      import('reveal.js/plugin/math/math.esm.js')
+    ]).then(([RevealModule, MathModule]) => {
       const Reveal = RevealModule.default;
+      const RevealMath = MathModule.default;
 
       const deck = new Reveal({
         hash: true,
@@ -39,6 +43,7 @@ export default function EducacaoNaComputacao2() {
         width: '100%',
         height: '100%',
         backgroundTransition: 'slide',
+        plugins: [RevealMath.KaTeX],
       });
 
       deck.initialize();
@@ -65,6 +70,7 @@ export default function EducacaoNaComputacao2() {
           <section>
             <Slide3a />
             <Slide3b />
+            <Slide3b2 />
             <Slide3c />
             <Slide3d />
           </section>

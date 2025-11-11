@@ -1,6 +1,6 @@
 export default function Slide2() {
   return (
-    <section>
+    <section className="flex flex-col gap-4">
       <h2>Vamos jogar!</h2>
       <p>
         <a

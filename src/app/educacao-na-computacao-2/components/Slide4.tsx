@@ -1,6 +1,6 @@
 export default function Slide4() {
   return (
-    <section>
+    <section className="flex flex-col gap-4">
       <h2>O que está acontecendo aqui?</h2>
 
       <iframe

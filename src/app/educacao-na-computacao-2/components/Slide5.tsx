@@ -1,6 +1,6 @@
 export default function Slide5() {
   return (
-    <section>
+    <section className="flex flex-col gap-4">
       <h2>Agora que você sabe contar, vamos jogar!</h2>
       <p>
         <a

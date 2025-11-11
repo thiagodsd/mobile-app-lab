@@ -1,45 +1,46 @@
-import { BlockMath } from 'react-katex';
-
 export default function Slide3b() {
-  return (
-    <section>
-      <h3>Probabilidade de Blackjack Natural</h3>
+    return (
+        <section className="flex flex-col gap-4">
+            <div className="flex flex-col items-start mb-10">
+                <h3>
+                    Pré-Requisitos: Conceitos e Ferramentas
+                </h3>
+            </div>
 
-      <h4>Conceitos e Ferramentas</h4>
+            <div className="flex flex-col">
+                <div className="flex flex-row gap-8 items-start justify-center">
+                    <article className="flex flex-col text-left flex-1">
+                        <p>Probabilidade Conjunta</p>
+                        <figure className="flex flex-col items-center">
+                            <p style={{ fontSize: '0.75em' }}>{'$P(A \\cap B) = P(A) \\times P(B \\mid A)$'}</p>
+                            <svg width="180" height="150" viewBox="0 0 120 100">
+                                <circle cx="45" cy="50" r="30" fill="none" stroke="#333" strokeWidth="2" />
+                                <circle cx="75" cy="50" r="30" fill="none" stroke="#333" strokeWidth="2" />
+                                <text x="60" y="55" textAnchor="middle" fontSize="12" fill="#333">A&cap;B</text>
+                            </svg>
+                        </figure>
+                        <p>
+                            <em>Ex: Lançar dois dados e ambos serem pares</em>
+                        </p>
+                        <p style={{ fontSize: '0.66em' }}>{'$P(D_1 \\text{ par} \\cap D_2 \\text{ par}) = P(D_1 \\text{ par}) \\times P(D_2 \\text{ par})$'}</p>
+                    </article>
 
-      <dl>
-        <dt><strong>Probabilidade Conjunta</strong></dt>
-        <dd><em>Ex: Lançar dois dados e ambos serem pares</em></dd>
-        <dd>P(D<sub>1</sub> par &cap; D<sub>2</sub> par) = P(D<sub>1</sub> par) &times; P(D<sub>2</sub> par)</dd>
-        <dd><BlockMath math="P(A \cap B) = P(A) \times P(B \mid A)" /></dd>
-      </dl>
-
-      <dl>
-        <dt><strong>Eventos Mutuamente Exclusivos</strong></dt>
-        <dd><em>Ex: A soma dos dados ser 7 ou 11</em></dd>
-        <dd>P(soma = 7 &cup; soma = 11) = P(soma = 7) + P(soma = 11)</dd>
-        <dd><BlockMath math="P(A \cup B) = P(A) + P(B)" /></dd>
-      </dl>
-
-      <h4>Cálculos</h4>
-
-      <article>
-        <p><strong>Caso 1: Ás &rarr; 10</strong></p>
-        <BlockMath math="P(\text{Ás} \cap \text{10}) = P(\text{Ás}) \times P(\text{10} \mid \text{Ás})" />
-        <BlockMath math="P = \frac{4}{52} \times \frac{16}{51} = \frac{64}{2652}" />
-      </article>
-
-      <article>
-        <p><strong>Caso 2: 10 &rarr; Ás</strong></p>
-        <BlockMath math="P(\text{10} \cap \text{Ás}) = P(\text{10}) \times P(\text{Ás} \mid \text{10})" />
-        <BlockMath math="P = \frac{16}{52} \times \frac{4}{51} = \frac{64}{2652}" />
-      </article>
-
-      <p><em>União de eventos mutuamente exclusivos:</em></p>
-      <BlockMath math="P(\text{Blackjack}) = P(\text{Ás} \cap \text{10}) + P(\text{10} \cap \text{Ás})" />
-      <BlockMath math="P(\text{Blackjack}) = \frac{64}{2652} + \frac{64}{2652} = \frac{128}{2652} = \frac{32}{663}" />
-
-      <BlockMath math="\boxed{P(\text{Blackjack Natural}) \approx 4.83\%}" />
-    </section>
-  );
+                    <article className="flex flex-col text-left flex-1">
+                        <p>Eventos Mutuamente Exclusivos</p>
+                        <figure className="flex flex-col items-center">
+                            <p style={{ fontSize: '0.75em' }}>{'$P(A \\cup B) = P(A) + P(B)$'}</p>
+                            <svg width="225" height="150" viewBox="0 0 150 100">
+                                <circle cx="40" cy="50" r="30" fill="none" stroke="#333" strokeWidth="2" />
+                                <circle cx="110" cy="50" r="30" fill="none" stroke="#333" strokeWidth="2" />
+                                <text x="40" y="55" textAnchor="middle" fontSize="12" fill="#333">A</text>
+                                <text x="110" y="55" textAnchor="middle" fontSize="12" fill="#333">B</text>
+                            </svg>
+                        </figure>
+                        <p><em>Ex: A soma dos dados ser 7 ou 11</em></p>
+                        <p style={{ fontSize: '0.66em' }}>{'$P(\\text{soma} = 7 \\cup \\text{soma} = 11) = P(\\text{soma} = 7) + P(\\text{soma} = 11)$'}</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    );
 }

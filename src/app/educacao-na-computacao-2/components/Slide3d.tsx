@@ -1,58 +1,84 @@
-import { BlockMath } from 'react-katex';
-
 export default function Slide3d() {
-  return (
-    <section>
-      <h3>Valor Esperado no Blackjack (Flat Betting)</h3>
+    return (
+        <section className="flex flex-col gap-4">
+            <div className="flex flex-col items-start mb-10">
+                <h3>
+                    Valor Esperado no Blackjack &quot;Flat Betting&quot;
+                </h3>
+            </div>
 
-      <h4>Definição de Valor Esperado</h4>
-      <BlockMath math="X \in \{-V, 0, +V\}" />
-      <BlockMath math="E[X] = \sum_{x \in X} x \cdot P(X = x)" />
+            <div className="flex flex-col">
+                <div className="flex flex-row gap-6 items-start justify-center mb-10">
+                    <article className="flex flex-col text-left flex-1">
+                        <p>Definição</p>
+                        <figure className="flex flex-col items-start">
+                            <p style={{ fontSize: '0.75em' }}>{'$X \\in \\{-V, 0, +V\\}$'}</p>
+                            <p style={{ fontSize: '0.75em' }}>{'$E[X] = \\sum_{x \\in X} x \\cdot P(X = x)$'}</p>
+                        </figure>
+                    </article>
 
-      <h4>Possíveis Resultados (V = valor apostado)</h4>
+                    <article className="flex flex-col text-left flex-1">
+                        <p>Nosso Problema</p>
+                        <figure className="flex flex-col items-start">
+                            <p style={{ fontSize: '0.75em' }}>{'$E[X] = p_v \\cdot V + p_d \\cdot (-V) + p_e \\cdot 0$'}</p>
+                            <p style={{ fontSize: '0.75em' }}>{'$\\boxed{E[X] = V(p_v - p_d)}$'}</p>
+                        </figure>
+                    </article>
 
-      <dl>
-        <dt><strong>Vitória</strong></dt>
-        <dd><BlockMath math="+V" /></dd>
-        <dd>p<sub>v</sub> = 42.22%</dd>
-      </dl>
+                    <article className="flex flex-col text-left flex-1">
+                        <p>Probabilidades Reais com Estratégia Básica, em função do valor V</p>
+                        <figure className="flex flex-col items-start">
+                            <ul className="flex flex-col gap-1">
+                                <li>
+                                    <strong>Vitória:</strong> <span style={{ fontSize: '0.75em' }}>{'$+V$'}</span> (p<sub>v</sub> = 42.22%)
+                                </li>
+                                <li>
+                                    <strong>Derrota:</strong> <span style={{ fontSize: '0.75em' }}>{'$-V$'}</span> (p<sub>d</sub> = 49.10%)
+                                </li>
+                                <li>
+                                    <strong>Empate:</strong> <span style={{ fontSize: '0.75em' }}>{'$0$'}</span> (p<sub>e</sub> = 8.48%)
+                                </li>
+                            </ul>
+                        </figure>
+                    </article>
+                </div>
 
-      <dl>
-        <dt><strong>Derrota</strong></dt>
-        <dd><BlockMath math="-V" /></dd>
-        <dd>p<sub>d</sub> = 49.10%</dd>
-      </dl>
+                <div className="flex flex-col gap-8 items-center justify-center">
+                    <article className="flex flex-col text-center flex-1">
+                        <p style={{ fontSize: '0.75em' }}>
+                            {`
+                                \\[
+                                    \\begin{aligned}
+                                        E[X] &= V(p_v - p_d) \\\\
+                                        &= V(0.4222 - 0.4910) \\\\
+                                        &= V(-0.0688) \\\\
+                                        &\\approx \\boxed{-6.9\\% \\cdot V}
+                                    \\end{aligned}
+                                \\]
+                            `}
+                        </p>
+                        <p>Perda média de 6.9% por aposta no longo prazo.</p>
+                    </article>
+                </div>
 
-      <dl>
-        <dt><strong>Empate</strong></dt>
-        <dd><BlockMath math="0" /></dd>
-        <dd>p<sub>e</sub> = 8.48%</dd>
-      </dl>
-
-      <p><strong>Fontes:</strong></p>
-      <ul>
-        <li>
-          Wizard of Odds:{' '}
-          <a href="https://wizardofodds.com/ask-the-wizard/blackjack/probability/" target="_blank" rel="noopener noreferrer">
-            wizardofodds.com/ask-the-wizard/blackjack/probability/
-          </a>
-        </li>
-        <li>
-          Casino.us:{' '}
-          <a href="https://www.casino.us/blackjack/odds/" target="_blank" rel="noopener noreferrer">
-            casino.us/blackjack/odds/
-          </a>
-        </li>
-      </ul>
-
-      <h4>Fórmula Geral</h4>
-      <BlockMath math="E[X] = p_v \cdot V + p_d \cdot (-V) + p_e \cdot 0" />
-      <BlockMath math="\boxed{E[X] = V(p_v - p_d)}" />
-
-      <h4>Probabilidades Reais com Estratégia Básica</h4>
-      <BlockMath math="E[X] = V(0.4222 - 0.4910) = V(-0.0688)" />
-      <BlockMath math="\boxed{E[X] = -6.88\% \cdot V \approx -6.9\% \cdot V}" />
-      <p>Perda média de 6.9% por aposta no longo prazo</p>
-    </section>
-  );
+                <div className="flex flex-col text-left text-sm">
+                    <strong>Fontes:</strong>
+                    <ul>
+                        <li>
+                            Wizard of Odds:{' '}
+                            <a href="https://wizardofodds.com/ask-the-wizard/blackjack/probability/" target="_blank" rel="noopener noreferrer">
+                                wizardofodds.com/ask-the-wizard/blackjack/probability/
+                            </a>
+                        </li>
+                        <li>
+                            Casino.us:{' '}
+                            <a href="https://www.casino.us/blackjack/odds/" target="_blank" rel="noopener noreferrer">
+                                casino.us/blackjack/odds/
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    );
 }
