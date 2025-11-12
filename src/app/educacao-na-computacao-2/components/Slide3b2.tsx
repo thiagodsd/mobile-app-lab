@@ -10,8 +10,8 @@ export default function Slide3b2() {
             <div className="flex flex-col">
                 <div className="flex flex-row gap-8 items-start justify-center mb-10">
                     <article className="flex flex-col text-left flex-1">
-                        <p>Caso 1: Ás &rarr; 10</p>
-                        <p>
+                        <h4>Caso 1: Ás &rarr; 10</h4>
+                        <p className="text-[0.66em]">
                             Primeiro, tiramos um Ás, depois uma carta de valor 10.
                         </p>
                         <figure className="flex flex-col items-start">
@@ -21,8 +21,8 @@ export default function Slide3b2() {
                     </article>
 
                     <article className="flex flex-col text-left flex-1">
-                        <p>Caso 2: 10 &rarr; Ás</p>
-                        <p>
+                        <h4>Caso 2: 10 &rarr; Ás</h4>
+                        <p className="text-[0.66em]">
                             Primeiro, tiramos uma carta de valor 10, depois um Ás.
                         </p>
                         <figure className="flex flex-col items-start">

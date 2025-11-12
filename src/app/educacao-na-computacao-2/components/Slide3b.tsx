@@ -10,7 +10,7 @@ export default function Slide3b() {
             <div className="flex flex-col">
                 <div className="flex flex-row gap-8 items-start justify-center">
                     <article className="flex flex-col text-left flex-1">
-                        <p>Probabilidade Conjunta</p>
+                        <h4>Probabilidade Conjunta</h4>
                         <figure className="flex flex-col items-center">
                             <p style={{ fontSize: '0.75em' }}>{'$P(A \\cap B) = P(A) \\times P(B \\mid A)$'}</p>
                             <svg width="180" height="150" viewBox="0 0 120 100">
@@ -19,14 +19,12 @@ export default function Slide3b() {
                                 <text x="60" y="55" textAnchor="middle" fontSize="12" fill="#333">A&cap;B</text>
                             </svg>
                         </figure>
-                        <p>
-                            <em>Ex: Lançar dois dados e ambos serem pares</em>
-                        </p>
-                        <p style={{ fontSize: '0.66em' }}>{'$P(D_1 \\text{ par} \\cap D_2 \\text{ par}) = P(D_1 \\text{ par}) \\times P(D_2 \\text{ par})$'}</p>
+                        <p className="text-[0.66em]"><em>Ex: Lançar dois dados e ambos serem pares</em></p>
+                        <p className="text-[0.66em]">{'$P(D_1 \\text{ par} \\cap D_2 \\text{ par}) = P(D_1 \\text{ par}) \\times P(D_2 \\text{ par})$'}</p>
                     </article>
 
                     <article className="flex flex-col text-left flex-1">
-                        <p>Eventos Mutuamente Exclusivos</p>
+                        <h4>Eventos Mutuamente Exclusivos</h4>
                         <figure className="flex flex-col items-center">
                             <p style={{ fontSize: '0.75em' }}>{'$P(A \\cup B) = P(A) + P(B)$'}</p>
                             <svg width="225" height="150" viewBox="0 0 150 100">
@@ -36,8 +34,8 @@ export default function Slide3b() {
                                 <text x="110" y="55" textAnchor="middle" fontSize="12" fill="#333">B</text>
                             </svg>
                         </figure>
-                        <p><em>Ex: A soma dos dados ser 7 ou 11</em></p>
-                        <p style={{ fontSize: '0.66em' }}>{'$P(\\text{soma} = 7 \\cup \\text{soma} = 11) = P(\\text{soma} = 7) + P(\\text{soma} = 11)$'}</p>
+                        <p className="text-[0.66em]"><em>Ex: A soma dos dados ser 7 ou 11</em></p>
+                        <p className="text-[0.66em]">{'$P(\\text{soma} = 7 \\cup \\text{soma} = 11) = P(\\text{soma} = 7) + P(\\text{soma} = 11)$'}</p>
                     </article>
                 </div>
             </div>
