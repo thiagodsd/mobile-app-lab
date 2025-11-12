@@ -10,7 +10,7 @@ export default function Slide3d() {
             <div className="flex flex-col">
                 <div className="flex flex-row gap-6 items-start justify-center mb-10">
                     <article className="flex flex-col text-left flex-1">
-                        <p>Definição</p>
+                        <h4>Definição</h4>
                         <figure className="flex flex-col items-start">
                             <p style={{ fontSize: '0.75em' }}>{'$X \\in \\{-V, 0, +V\\}$'}</p>
                             <p style={{ fontSize: '0.75em' }}>{'$E[X] = \\sum_{x \\in X} x \\cdot P(X = x)$'}</p>
@@ -18,14 +18,14 @@ export default function Slide3d() {
                     </article>
 
                     <article className="flex flex-col text-left flex-1">
-                        <p>Nosso Problema</p>
+                        <h4>Nosso Problema</h4>
                         <figure className="flex flex-col items-start">
                             <p style={{ fontSize: '0.75em' }}>{'$E[X] = p_v \\cdot V + p_d \\cdot (-V) + p_e \\cdot 0$'}</p>
-                            <p style={{ fontSize: '0.75em' }}>{'$\\boxed{E[X] = V(p_v - p_d)}$'}</p>
+                            <p style={{ fontSize: '0.75em' }}>{'$E[X] = V(p_v - p_d)$'}</p>
                         </figure>
                     </article>
 
-                    <article className="flex flex-col text-left flex-1">
+                    <article className="flex flex-col text-left flex-1 text-[0.66em]">
                         <p>Probabilidades Reais com Estratégia Básica, em função do valor V</p>
                         <figure className="flex flex-col items-start">
                             <ul className="flex flex-col gap-1">

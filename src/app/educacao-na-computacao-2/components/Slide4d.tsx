@@ -1,65 +1,53 @@
 export default function Slide4d() {
-  return (
-    <section className="flex flex-col gap-4">
-      <h2>Exemplo: Sistema Hi-Lo em Ação</h2>
+    return (
+        <section className="flex flex-col gap-4">
+            <div className="flex flex-col items-start mb-10">
+                <h3>
+                    Estratégia Hi-Lo Simplificada
+                </h3>
+            </div>
 
-      <p>Conte TODAS as cartas visíveis na mesa (suas cartas + dealer + outros jogadores)</p>
+            <div className="flex flex-row gap-8 items-start">
+                <article className="flex flex-col gap-4 text-left flex-1">
+                    <div>
+                        <h4>Sistema de Contagem Hi-Lo</h4>
+                        <p className="text-[0.66em]">Sistema de contagem mais popular:</p>
+                        <ul className="flex flex-col text-[0.66em] list-disc list-inside">
+                            <li><strong>2 a 6:</strong> +1</li>
+                            <li><strong>7 a 9:</strong> 0</li>
+                            <li><strong>10 a A:</strong> -1</li>
+                        </ul>
+                    </div>
 
-      <div className="flex flex-row gap-6 justify-center">
-        <dl className="flex flex-col">
-          <dt><strong>2-6:</strong></dt>
-          <dd>+1</dd>
-        </dl>
-        <dl className="flex flex-col">
-          <dt><strong>7-9:</strong></dt>
-          <dd>0</dd>
-        </dl>
-        <dl className="flex flex-col">
-          <dt><strong>10-A:</strong></dt>
-          <dd>-1</dd>
-        </dl>
-      </div>
+                    <div>
+                        <h4>Como Usar</h4>
+                        <ul className="flex flex-col text-[0.66em] list-disc list-inside">
+                            <li>Contagem positiva = vantagem do jogador &rarr; aposte mais</li>
+                            <li>Contagem negativa = vantagem da casa &rarr; aposte mínimo</li>
+                        </ul>
+                    </div>
+                </article>
 
-      <ol className="flex flex-col gap-3">
-        <li className="flex flex-col">
-          <p><strong>Rodada 1:</strong> (cartas visíveis na mesa)</p>
-          <p>
-            <span>5&spades;</span>
-            <span> K&hearts;</span>
-            <span> 3&diams;</span>
-            <span> 9&clubs;</span>
-          </p>
-          <p>+1 - 1 + 1 + 0 = <strong>+1</strong></p>
-        </li>
+                <article className="flex flex-col gap-4 text-left flex-1">
+                    <div>
+                        <h4>Exemplo em Ação</h4>
+                        <p className="text-[0.66em]">Conte todas as cartas visíveis na mesa:</p>
+                        <ul className="flex flex-col text-[0.66em] list-disc list-inside">
+                            <li><strong>Rodada 1:</strong> 5♠ K♥ 3♦ 9♣ → +1 - 1 + 1 + 0 = <strong>+1</strong></li>
+                            <li><strong>Rodada 2:</strong> A♠ 2♥ Q♦ 4♣ → -1 + 1 - 1 + 1 = <strong>0</strong></li>
+                            <li><strong>Rodada 3:</strong> 6♥ 2♠ 5♣ 3♦ → +1 + 1 + 1 + 1 = <strong>+4</strong></li>
+                        </ul>
+                    </div>
 
-        <li className="flex flex-col">
-          <p><strong>Rodada 2:</strong></p>
-          <p>
-            <span>A&spades;</span>
-            <span> 2&hearts;</span>
-            <span> Q&diams;</span>
-            <span> 4&clubs;</span>
-          </p>
-          <p>-1 + 1 - 1 + 1 = <strong>0</strong></p>
-        </li>
-
-        <li className="flex flex-col">
-          <p><strong>Rodada 3:</strong></p>
-          <p>
-            <span>6&hearts;</span>
-            <span> 2&spades;</span>
-            <span> 5&clubs;</span>
-            <span> 3&diams;</span>
-          </p>
-          <p>+1 + 1 + 1 + 1 = <strong>+4</strong></p>
-        </li>
-      </ol>
-
-      <aside className="flex flex-col gap-2">
-        <p><strong>Contagem Acumulada Total:</strong></p>
-        <p>+5</p>
-        <p>Contagem positiva &rarr; Vantagem do jogador &rarr; Aumente a aposta</p>
-      </aside>
-    </section>
-  );
+                    <div>
+                        <h4>Resultado</h4>
+                        <ul className="flex flex-col text-[0.66em] list-disc list-inside">
+                            <li><strong>Contagem Total:</strong> +5</li>
+                            <li>Contagem positiva &rarr; vantagem do jogador &rarr; aumente a aposta</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+    );
 }

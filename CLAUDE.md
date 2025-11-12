@@ -49,3 +49,4 @@ The project maintains Firebase configuration files (.env.example, .env.local) fo
 
 ## Project Goal
 The main objective is to create an interactive educational page about probability distributions, likely involving mathematical visualizations, interactive charts, and educational content to help users understand statistical concepts.
+- não use dl/dt/dd
