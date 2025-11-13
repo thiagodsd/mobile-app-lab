@@ -1,18 +1,3 @@
-// Componente de carta simplificado para visualização
-const MiniCard = ({ rank, suit = '♠' }: { rank: string; suit?: string }) => {
-    const isRed = suit === '♥' || suit === '♦';
-    return (
-        <div className="w-20 h-28 bg-white border-2 border-gray-800 rounded relative">
-            <div className={`absolute top-1 left-1.5 text-xl leading-none ${isRed ? 'text-red-600' : 'text-black'}`}>
-                {suit}
-            </div>
-            <div className={`absolute bottom-1 right-1.5 text-5xl leading-none font-light ${isRed ? 'text-red-600' : 'text-black'}`}>
-                {rank}
-            </div>
-        </div>
-    );
-};
-
 export default function Slide2a() {
     return (
         <section className="flex flex-col gap-8 items-center justify-center min-h-screen">
