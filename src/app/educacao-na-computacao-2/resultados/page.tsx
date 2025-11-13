@@ -244,7 +244,6 @@ export default function ResultadosPage() {
                           width: 1
                         }
                       },
-                      nbinsx: 15,
                       hovertemplate: 'Saldo: $%{x}<br>Jogadores: %{y}<extra></extra>',
                     },
                   ]}
