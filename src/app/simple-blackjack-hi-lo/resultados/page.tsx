@@ -155,7 +155,7 @@ export default function ResultadosHiLo() {
                       <td className="px-6 py-4 text-right text-black">${player.balanceBefore}</td>
                       <td className="px-6 py-4 text-right font-semibold text-black">${player.balance}</td>
                       <td className={`px-6 py-4 text-right text-xl font-bold ${
-                        player.delta > 0 ? 'text-green-600' : player.delta < 0 ? 'text-red-600' : 'text-black'
+                        player.delta > 0 ? 'text-green-600' : 'text-gray-600'
                       }`}>
                         {player.delta > 0 ? '+' : ''}{player.delta}
                       </td>
