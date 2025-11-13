@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
     const allPlayers = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
-    })) as PlayerData[];
+    })) as unknown as PlayerData[];
 
     // console.log('Exemplo de jogador:', allPlayers[0]);
 
