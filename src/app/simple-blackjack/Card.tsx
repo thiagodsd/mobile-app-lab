@@ -51,7 +51,7 @@ export default function Card({ card, hidden = false, index = 0 }: CardProps) {
     >
       {/* Naipe no canto superior esquerdo */}
       <motion.div
-        className={`absolute top-1.5 left-1.5 text-3xl leading-none ${isRed ? 'text-red-600' : 'text-black'}`}
+        className={`absolute top-1.5 left-1.5 text-3xl leading-none font-serif ${isRed ? 'text-red-600' : 'text-black'}`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: index * 0.15 + 0.3 }}
@@ -61,7 +61,7 @@ export default function Card({ card, hidden = false, index = 0 }: CardProps) {
 
       {/* Número grande no canto inferior direito */}
       <motion.div
-        className={`absolute bottom-1 right-1 text-[64px] leading-none font-light ${isRed ? 'text-red-600' : 'text-black'}`}
+        className={`absolute bottom-1 right-1 text-[64px] leading-none font-serif ${isRed ? 'text-red-600' : 'text-black'}`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: index * 0.15 + 0.3 }}

@@ -74,29 +74,29 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
   };
 
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-white p-8 font-serif">
       {/* Header */}
       <div className="max-w-4xl mx-auto mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-6xl font-light text-black">21</h1>
-          <div className="flex items-center gap-8">
-            <div className="flex gap-4">
-              <div className="text-center">
-                <div className="relative w-16 h-24 bg-gray-800 rounded border-2 border-gray-900 flex items-center justify-center mb-1">
-                  <span className="text-xs text-white font-light">Baralho</span>
-                </div>
-                <p className="text-sm text-gray-600 font-light">{gameState.deck.length} cartas</p>
-              </div>
-              <div className="text-center">
-                <div className="relative w-16 h-24 bg-gray-200 rounded border-2 border-gray-400 flex items-center justify-center mb-1">
-                  <span className="text-xs text-gray-500 font-light">Descarte</span>
-                </div>
-                <p className="text-sm text-gray-600 font-light">{gameState.discardPile?.length || 0} cartas</p>
-              </div>
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex items-center gap-4">
+            <h1 className="text-6xl text-black font-[family-name:var(--font-croissant-one)]">21</h1>
+            <div className="text-left">
+              <p className="text-sm text-gray-500 font-light">Jogador: <span className="text-2xl text-black font-semibold">{player.nickname}</span></p>
+              <p className="text-sm text-gray-500 font-light">Rodada: <span className="text-2xl text-black font-semibold">{gameState.gamesPlayed}/10</span></p>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600 font-light">Jogador: {player.nickname}</p>
-              <p className="text-sm text-gray-600 font-light">Rodada: {gameState.gamesPlayed}/10</p>
+          </div>
+          <div className="flex gap-4">
+            <div className="text-center">
+              <div className="relative w-16 h-24 bg-gray-800 rounded border-2 border-gray-900 flex items-center justify-center mb-1">
+                <span className="text-xs text-white font-light">Baralho</span>
+              </div>
+              <p className="text-sm text-gray-600 font-light">{gameState.deck.length} cartas</p>
+            </div>
+            <div className="text-center">
+              <div className="relative w-16 h-24 bg-gray-200 rounded border-2 border-gray-400 flex items-center justify-center mb-1">
+                <span className="text-xs text-gray-500 font-light">Descarte</span>
+              </div>
+              <p className="text-sm text-gray-600 font-light">{gameState.discardPile?.length || 0} cartas</p>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             <AnimatePresence mode="wait">
               <motion.p
                 key={gameState.balance}
-                className="text-2xl font-light text-black"
+                className="text-4xl font-semibold text-black font-[family-name:var(--font-croissant-one)]"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -130,7 +130,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             <AnimatePresence mode="wait">
               <motion.p
                 key={stats.wins}
-                className="text-2xl font-light text-green-600"
+                className="text-lg font-light text-green-600"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
@@ -149,7 +149,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             <AnimatePresence mode="wait">
               <motion.p
                 key={stats.losses}
-                className="text-2xl font-light text-red-600"
+                className="text-lg font-light text-red-600"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
@@ -168,7 +168,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             <AnimatePresence mode="wait">
               <motion.p
                 key={stats.pushes}
-                className="text-2xl font-light text-gray-600"
+                className="text-lg font-light text-gray-600"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
@@ -187,7 +187,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
         {/* Dealer Hand */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-light text-black">Dealer</h2>
+            <h2 className="text-xl text-black font-light">Dealer</h2>
             {gameState.dealerHand.length > 0 && (
               <p className="text-lg font-light text-gray-600">
                 {gameState.gameStatus === 'playing' ? '?' : gameState.dealerScore}
@@ -209,7 +209,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
         {/* Player Hand */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-light text-black">Você</h2>
+            <h2 className="text-xl text-black font-light">Você</h2>
             {gameState.playerHand.length > 0 && (
               <p className="text-lg font-light text-gray-600">{gameState.playerScore}</p>
             )}
@@ -297,16 +297,16 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             >
               <motion.button
                 onClick={hit}
-                className="flex-1 py-3 bg-black text-white rounded font-light"
-                whileHover={{ scale: 1.02, backgroundColor: '#374151' }}
+                className="flex-1 py-3 bg-green-50 border-2 border-green-600 text-green-700 rounded font-light"
+                whileHover={{ scale: 1.02, backgroundColor: '#dcfce7' }}
                 whileTap={{ scale: 0.98 }}
               >
                 Pedir Carta
               </motion.button>
               <motion.button
                 onClick={stand}
-                className="flex-1 py-3 border-2 border-gray-800 rounded font-light text-black"
-                whileHover={{ scale: 1.02, backgroundColor: '#f3f4f6' }}
+                className="flex-1 py-3 bg-red-50 border-2 border-red-600 text-red-700 rounded font-light"
+                whileHover={{ scale: 1.02, backgroundColor: '#fee2e2' }}
                 whileTap={{ scale: 0.98 }}
               >
                 Parar
@@ -332,7 +332,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
             </motion.button>
           )}
 
-          {(!canPlay || gameState.gamesPlayed >= 6) && (
+          {(!canPlay || gameState.gamesPlayed >= 10) && (
             <motion.div
               className="space-y-4"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -345,7 +345,7 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-2xl font-light text-black mb-4">Fim do Jogo</h3>
+                <h3 className="text-2xl text-black mb-4 font-[family-name:var(--font-croissant-one)]">Fim do Jogo</h3>
                 <p className="text-gray-600 font-light mb-2">
                   Saldo Final: <span className="text-black font-medium">${gameState.balance}</span>
                 </p>
@@ -371,20 +371,116 @@ export default function Game({ player, onGameEnd, initialGameState, initialStats
           )}
         </div>
 
-        {/* Regras Simplificadas */}
+        {/* Regras do Jogo */}
         <div className="mt-12 pt-8 border-t border-gray-300">
-          <h3 className="text-6xl font-light text-black mb-6">Regras do Jogo</h3>
-          <div className="space-y-3 text-base text-gray-600 font-light">
-            <p><span className="font-medium text-black">Objetivo:</span> Chegar o mais próximo possível de 21 pontos sem estourar.</p>
-            <p><span className="font-medium text-black">Valores:</span> Cartas 2-10 valem seu número, J/Q/K valem 10.</p>
-            <p><span className="font-medium text-black">Ás (A):</span> Vale 11 ou 1, o que for melhor para sua mão. O jogo ajusta automaticamente.</p>
-            <p><span className="font-medium text-black">Pedir Carta:</span> Recebe mais uma carta do baralho.</p>
-            <p><span className="font-medium text-black">Parar:</span> Mantém suas cartas atuais e passa a vez para o dealer.</p>
-            <p><span className="font-medium text-black">Dealer:</span> Obrigado a comprar até atingir 17 ou mais, então deve parar.</p>
-            <p><span className="font-medium text-black">Estourar:</span> Passar de 21 é derrota automática.</p>
-            <p><span className="font-medium text-black">Vitória:</span> Ter pontuação maior que o dealer (sem estourar), ou o dealer estourar.</p>
-            <p><span className="font-medium text-black">Empate:</span> Se você e o dealer tiverem a mesma pontuação, é empate (ninguém ganha).</p>
-            <p><span className="font-medium text-black">Blackjack Natural:</span> 21 com duas cartas (Ás + carta de valor 10).</p>
+          <div className="mb-8">
+            <h3 className="text-5xl text-black mb-2 font-light">Regras do Jogo</h3>
+          </div>
+
+          <div className="space-y-8">
+            {/* Objetivo */}
+            <div className="bg-gray-50 border-l-4 border-black p-6 rounded-r">
+              <h4 className="text-2xl font-semibold text-black mb-2">🎯 Objetivo</h4>
+              <p className="text-lg text-gray-700 font-light">
+                Vença o dealer chegando <strong>o mais próximo possível de 21 pontos</strong> sem ultrapassar esse valor.
+              </p>
+            </div>
+
+            {/* Valor das Cartas */}
+            <div>
+              <h4 className="text-2xl font-semibold text-black mb-4">🃏 Valor das Cartas</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-white border-2 border-gray-300 rounded p-4">
+                  <p className="font-semibold text-black mb-1">2 a 10</p>
+                  <p className="text-gray-600 font-light">Valor da face</p>
+                </div>
+                <div className="bg-white border-2 border-gray-300 rounded p-4">
+                  <p className="font-semibold text-black mb-1">J, Q, K (Figuras)</p>
+                  <p className="text-gray-600 font-light">10 pontos</p>
+                </div>
+                <div className="bg-white border-2 border-gray-300 rounded p-4">
+                  <p className="font-semibold text-black mb-1">Ás (A)</p>
+                  <p className="text-gray-600 font-light">11 ou 1*</p>
+                </div>
+              </div>
+              <p className="mt-3 text-sm text-gray-600 font-light italic">
+                * O Ás é inteligente! Ele vale 11, mas se isso fizer você estourar, automaticamente passa a valer 1.
+              </p>
+            </div>
+
+            {/* Como Jogar */}
+            <div>
+              <h4 className="text-2xl font-semibold text-black mb-4">🎮 Como Jogar</h4>
+
+              <div className="mb-6">
+                <p className="text-lg font-semibold text-black mb-3">Sua Vez:</p>
+                <div className="space-y-3">
+                  <div className="flex gap-3 items-start">
+                    <span className="text-2xl">🤚</span>
+                    <div>
+                      <p className="font-semibold text-green-700">Pedir Carta</p>
+                      <p className="text-gray-600 font-light">Receba mais uma carta do baralho.</p>
+                      <p className="text-sm text-gray-500 font-light italic">↳ Use quando precisar de mais pontos</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <span className="text-2xl">✋</span>
+                    <div>
+                      <p className="font-semibold text-red-700">Parar</p>
+                      <p className="text-gray-600 font-light">Mantenha sua mão atual e passe a vez.</p>
+                      <p className="text-sm text-gray-500 font-light italic">↳ Use quando estiver satisfeito com seus pontos</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-100 p-4 rounded">
+                <p className="text-lg font-semibold text-black mb-2">Vez do Dealer:</p>
+                <p className="text-gray-700 font-light mb-2">O dealer <strong>não escolhe</strong> — segue regras fixas:</p>
+                <ul className="list-none space-y-1 ml-4">
+                  <li className="text-gray-600 font-light">✅ Obrigado a comprar até ter 17+ pontos</li>
+                  <li className="text-gray-600 font-light">🛑 Obrigado a parar com 17 ou mais</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Condições de Vitória */}
+            <div>
+              <h4 className="text-2xl font-semibold text-black mb-4">🏆 Condições de Vitória</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-green-50 border-2 border-green-600 rounded p-4">
+                  <p className="font-semibold text-green-800 mb-2">✅ Você Vence Se:</p>
+                  <ul className="text-sm text-gray-700 font-light space-y-1">
+                    <li>• Sua pontuação {'>'} Dealer (sem estourar)</li>
+                    <li>• Dealer estoura (passa de 21)</li>
+                  </ul>
+                </div>
+                <div className="bg-red-50 border-2 border-red-600 rounded p-4">
+                  <p className="font-semibold text-red-800 mb-2">❌ Você Perde Se:</p>
+                  <ul className="text-sm text-gray-700 font-light space-y-1">
+                    <li>• Sua pontuação {'<'} Dealer</li>
+                    <li>• Você estoura (💥 passa de 21)</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-50 border-2 border-yellow-600 rounded p-4">
+                  <p className="font-semibold text-yellow-800 mb-2">🤝 Empate Se:</p>
+                  <ul className="text-sm text-gray-700 font-light space-y-1">
+                    <li>• Mesma pontuação que o dealer</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Blackjack Natural */}
+            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-600 rounded p-6">
+              <h4 className="text-2xl font-semibold text-black mb-2">⭐ Blackjack Natural</h4>
+              <p className="text-lg text-gray-700 font-light mb-2">
+                <strong>21 com apenas 2 cartas</strong> (Ás + carta de valor 10)
+              </p>
+              <p className="text-gray-600 font-light">
+                <strong>Exemplo:</strong> A♠ + K♥ = BLACKJACK!
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -28,11 +28,14 @@ export default function BlackjackClient() {
         });
 
         // Player exists, ask if they want to continue or start fresh
-        if (existingPlayer.gamesPlayed >= 6 || existingPlayer.balance <= 0) {
-          console.log('Player finished, creating new session');
-          // Reset player for new game
-          const newPlayer = await createPlayer(nickname + '-' + Date.now());
-          setPlayer(newPlayer);
+        if (existingPlayer.gamesPlayed >= 10) {
+          console.log('Player already completed 10 games');
+          setError('Você já completou as 10 partidas. Use outro nickname para jogar novamente.');
+          return;
+        } else if (existingPlayer.balance <= 0) {
+          console.log('Player has no balance');
+          setError('Seu saldo acabou. Use outro nickname para jogar novamente.');
+          return;
         } else if (existingPlayer.savedGameState) {
           console.log('Saved game found, asking user...');
           setPendingPlayer(existingPlayer);
@@ -107,10 +110,10 @@ export default function BlackjackClient() {
 
   if (pendingPlayer) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center bg-white font-serif">
         <div className="w-full max-w-md p-8">
           <div className="mb-8">
-            <h1 className="text-9xl font-light text-black mb-3 text-center">21</h1>
+            <h1 className="text-9xl text-black mb-3 text-center font-[family-name:var(--font-croissant-one)]">21</h1>
             <div className="flex justify-center gap-3 mb-6">
               <span className="text-4xl text-black">♠</span>
               <span className="text-4xl text-red-600">♥</span>
@@ -120,7 +123,7 @@ export default function BlackjackClient() {
           </div>
 
           <div className="mb-8 text-center">
-            <h2 className="text-xl font-light text-black mb-2">Bem-vindo de volta, {pendingPlayer.nickname}!</h2>
+            <h2 className="text-xl text-black mb-2 font-[family-name:var(--font-croissant-one)]">Bem-vindo de volta, {pendingPlayer.nickname}!</h2>
             <p className="text-gray-600 font-light">Você tem um jogo em progresso.</p>
           </div>
 
@@ -133,7 +136,7 @@ export default function BlackjackClient() {
             </button>
             <button
               onClick={handleStartFresh}
-              className="w-full py-3 border-2 border-gray-800 rounded hover:bg-gray-100 transition-colors font-light text-black"
+              className="w-full py-3 border-2 border-gray-800 rounded hover:bg-gray-100 transition-colors text-black font-light"
             >
               Começar Novo Jogo
             </button>
@@ -144,7 +147,7 @@ export default function BlackjackClient() {
               <span className="font-medium text-black">Saldo:</span> ${pendingPlayer.balance}
             </p>
             <p className="text-sm text-gray-600 font-light mb-1">
-              <span className="font-medium text-black">Rodada:</span> {pendingPlayer.savedGameState?.gamesPlayed || 0}/6
+              <span className="font-medium text-black">Rodada:</span> {pendingPlayer.savedGameState?.gamesPlayed || 0}/10
             </p>
           </div>
         </div>

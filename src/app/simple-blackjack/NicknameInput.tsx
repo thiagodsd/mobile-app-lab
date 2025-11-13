@@ -27,10 +27,10 @@ export default function NicknameInput({ onSubmit }: NicknameInputProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-white font-serif">
       <div className="w-full max-w-md p-8">
         <div className="mb-8">
-          <h1 className="text-9xl font-light text-black mb-3 text-center">21</h1>
+          <h1 className="text-9xl text-black mb-3 text-center font-[family-name:var(--font-croissant-one)]">21</h1>
           <div className="flex justify-center gap-3 mb-6">
             <span className="text-4xl text-black">♠</span>
             <span className="text-4xl text-red-600">♥</span>

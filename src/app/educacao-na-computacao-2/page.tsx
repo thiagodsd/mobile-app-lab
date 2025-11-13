@@ -5,7 +5,11 @@ import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/serif.css';
 
 // Import slide components
-import Slide1 from './components/Slide1';
+import Slide0 from './components/Slide0';
+import Slide1a from './components/Slide1a';
+import Slide1b from './components/Slide1b';
+import Slide1c from './components/Slide1c';
+import Slide2a from './components/Slide2a';
 import Slide2 from './components/Slide2';
 import Slide3a from './components/Slide3a';
 import Slide3b from './components/Slide3b';
@@ -60,11 +64,21 @@ export default function EducacaoNaComputacao2() {
     <>
       <div className="reveal">
         <div className="slides">
-          {/* Slide 1 - Probabilidade de tirar carta 3 */}
-          <Slide1 />
+          {/* Slide 0 - Introdução */}
+          <Slide0 />
 
-          {/* Slide 2 - Link para o jogo */}
-          <Slide2 />
+          {/* Slide 1 - Probabilidade de tirar carta 3 (vertical stack) */}
+          <section>
+            <Slide1a />
+            <Slide1b />
+            <Slide1c />
+          </section>
+
+          {/* Slide 2 - Conexão com Blackjack e Link para o jogo (vertical stack) */}
+          <section>
+            <Slide2a />
+            <Slide2 />
+          </section>
 
           {/* Slide 3 - Probabilidade de lucro (vertical stack) */}
           <section>
