@@ -7,6 +7,35 @@ import { collection, getDocs, query } from 'firebase/firestore';
  * Padrão similar ao conhecimento-previo
  */
 
+interface PlayerStats {
+  wins?: number;
+  losses?: number;
+  pushes?: number;
+}
+
+interface SavedGameState {
+  balance?: number;
+}
+
+interface PlayerData {
+  nickname: string;
+  balance?: number;
+  wins?: number;
+  losses?: number;
+  pushes?: number;
+  currentStats?: PlayerStats | null;
+  savedGameState?: SavedGameState;
+}
+
+interface ProcessedPlayer {
+  nickname: string;
+  balance: number;
+  gamesPlayed: number;
+  wins: number;
+  losses: number;
+  pushes: number;
+}
+
 export const dynamic = 'force-dynamic';
 
 /**
@@ -29,12 +58,12 @@ export async function GET(request: NextRequest) {
     const allPlayers = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
-    }));
+    })) as PlayerData[];
 
     // console.log('Exemplo de jogador:', allPlayers[0]);
 
     // Processar jogadores com dados corretos
-    const processedPlayers = allPlayers.map((player: any) => {
+    const processedPlayers: ProcessedPlayer[] = allPlayers.map((player: PlayerData) => {
       // Se currentStats existir, usar seus valores (mesmo que sejam 0)
       // Se não existir (null/undefined), usar valores raiz (histórico total)
       const hasCurrentStats = player.currentStats !== null && player.currentStats !== undefined;
@@ -66,7 +95,7 @@ export async function GET(request: NextRequest) {
       };
     });
 
-    const players = processedPlayers.filter((player: any) => {
+    const players = processedPlayers.filter((player: ProcessedPlayer) => {
       return player.gamesPlayed >= minGames;
     });
 
@@ -75,11 +104,11 @@ export async function GET(request: NextRequest) {
     // Processar estatísticas agregadas
     const stats = {
       totalPlayers: players.length,
-      totalGames: players.reduce((sum: number, p: any) => sum + p.gamesPlayed, 0),
-      totalWins: players.reduce((sum: number, p: any) => sum + p.wins, 0),
-      totalLosses: players.reduce((sum: number, p: any) => sum + p.losses, 0),
-      totalPushes: players.reduce((sum: number, p: any) => sum + p.pushes, 0),
-      balances: players.map((p: any) => p.balance),
+      totalGames: players.reduce((sum: number, p: ProcessedPlayer) => sum + p.gamesPlayed, 0),
+      totalWins: players.reduce((sum: number, p: ProcessedPlayer) => sum + p.wins, 0),
+      totalLosses: players.reduce((sum: number, p: ProcessedPlayer) => sum + p.losses, 0),
+      totalPushes: players.reduce((sum: number, p: ProcessedPlayer) => sum + p.pushes, 0),
+      balances: players.map((p: ProcessedPlayer) => p.balance),
       players: players
     };
 
