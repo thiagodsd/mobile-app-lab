@@ -53,7 +53,11 @@ export default function BlackjackClient() {
       }
     } catch (err) {
       console.error('Error creating/fetching player:', err);
-      setError('Falha ao conectar ao banco de dados. Verifique sua configuração do Firebase.');
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Falha ao conectar ao banco de dados. Verifique sua configuração do Firebase.');
+      }
     } finally {
       setLoading(false);
     }
