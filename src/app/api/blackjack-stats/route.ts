@@ -69,15 +69,15 @@ export async function GET(request: NextRequest) {
       const hasCurrentStats = player.currentStats !== null && player.currentStats !== undefined;
 
       const wins = hasCurrentStats
-        ? (player.currentStats.wins ?? 0)
+        ? (player.currentStats?.wins ?? 0)
         : (player.wins ?? 0);
 
       const losses = hasCurrentStats
-        ? (player.currentStats.losses ?? 0)
+        ? (player.currentStats?.losses ?? 0)
         : (player.losses ?? 0);
 
       const pushes = hasCurrentStats
-        ? (player.currentStats.pushes ?? 0)
+        ? (player.currentStats?.pushes ?? 0)
         : (player.pushes ?? 0);
 
       const gamesPlayed = wins + losses + pushes;
