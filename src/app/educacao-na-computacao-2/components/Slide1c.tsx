@@ -106,7 +106,7 @@ export default function Slide1c() {
                     </div>
                 </div>
                 <p className="text-center text-sm text-gray-600 mt-2">
-                    Lê-se: "Probabilidade de A <strong>dado que</strong> B aconteceu"
+                    Lê-se: &quot;Probabilidade de A <strong>dado que</strong> B aconteceu&quot;
                 </p>
             </div>
 
