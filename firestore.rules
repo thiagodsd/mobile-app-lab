@@ -28,6 +28,19 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Regras para a coleção blackjack-hi-lo-players
+    // Permite leitura e escrita pública para o jogo Hi-Lo
+    match /blackjack-hi-lo-players/{playerId} {
+      // Qualquer um pode ler dados de jogadores
+      allow read: if true;
+
+      // Qualquer um pode criar e atualizar jogadores
+      allow create, update: if true;
+
+      // Não permite delete por segurança
+      allow delete: if false;
+    }
+
     // Nega acesso a todas as outras coleções por padrão
     match /{document=**} {
       allow read, write: if false;
