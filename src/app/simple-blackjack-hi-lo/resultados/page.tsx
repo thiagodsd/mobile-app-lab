@@ -62,14 +62,14 @@ export default function ResultadosHiLo() {
           <h1 className="text-5xl font-bold text-black mb-4 font-[family-name:var(--font-croissant-one)]">
             🏆 Leaderboard Hi-Lo
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-900">
             Ranking dos jogadores que completaram 10 partidas com contagem Hi-Lo
           </p>
         </div>
 
         {players.length === 0 ? (
           <div className="text-center">
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-900 mb-8">
               Nenhum jogador completou as 10 partidas ainda.
             </p>
             <Link
@@ -88,11 +88,11 @@ export default function ResultadosHiLo() {
                 <div className="flex flex-col items-center">
                   <div className="text-6xl mb-2">🥈</div>
                   <div className="bg-white rounded-lg shadow-lg p-6 text-center border-4 border-gray-300 w-48">
-                    <p className="text-2xl font-semibold mb-2">{players[1].nickname}</p>
+                    <p className="text-2xl font-semibold mb-2 text-black">{players[1].nickname}</p>
                     <p className="text-3xl font-bold text-green-600 mb-1">
                       {players[1].delta > 0 ? '+' : ''}{players[1].delta}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-900">
                       ${players[1].balanceBefore} → ${players[1].balance}
                     </p>
                   </div>
@@ -102,11 +102,11 @@ export default function ResultadosHiLo() {
                 <div className="flex flex-col items-center">
                   <div className="text-8xl mb-2">🥇</div>
                   <div className="bg-white rounded-lg shadow-xl p-8 text-center border-4 border-yellow-400 w-56">
-                    <p className="text-3xl font-bold mb-2">{players[0].nickname}</p>
+                    <p className="text-3xl font-bold mb-2 text-black">{players[0].nickname}</p>
                     <p className="text-4xl font-bold text-green-600 mb-2">
                       {players[0].delta > 0 ? '+' : ''}{players[0].delta}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-900">
                       ${players[0].balanceBefore} → ${players[0].balance}
                     </p>
                   </div>
@@ -116,11 +116,11 @@ export default function ResultadosHiLo() {
                 <div className="flex flex-col items-center">
                   <div className="text-6xl mb-2">🥉</div>
                   <div className="bg-white rounded-lg shadow-lg p-6 text-center border-4 border-orange-300 w-48">
-                    <p className="text-2xl font-semibold mb-2">{players[2].nickname}</p>
+                    <p className="text-2xl font-semibold mb-2 text-black">{players[2].nickname}</p>
                     <p className="text-3xl font-bold text-green-600 mb-1">
                       {players[2].delta > 0 ? '+' : ''}{players[2].delta}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-900">
                       ${players[2].balanceBefore} → ${players[2].balance}
                     </p>
                   </div>
@@ -133,11 +133,11 @@ export default function ResultadosHiLo() {
               <table className="w-full">
                 <thead className="bg-gray-100 border-b-2 border-gray-300">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Posição</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Jogador</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Antes Hi-Lo</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Depois Hi-Lo</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Delta</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-black">Posição</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-black">Jogador</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-black">Antes Hi-Lo</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-black">Depois Hi-Lo</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-black">Delta</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,14 +148,14 @@ export default function ResultadosHiLo() {
                         index < 3 ? 'bg-yellow-50' : 'hover:bg-gray-50'
                       } transition-colors`}
                     >
-                      <td className="px-6 py-4 text-2xl">
+                      <td className="px-6 py-4 text-2xl text-black">
                         {getMedal(index) || `${index + 1}º`}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-lg">{player.nickname}</td>
-                      <td className="px-6 py-4 text-right text-gray-600">${player.balanceBefore}</td>
-                      <td className="px-6 py-4 text-right font-semibold">${player.balance}</td>
+                      <td className="px-6 py-4 font-semibold text-lg text-black">{player.nickname}</td>
+                      <td className="px-6 py-4 text-right text-black">${player.balanceBefore}</td>
+                      <td className="px-6 py-4 text-right font-semibold text-black">${player.balance}</td>
                       <td className={`px-6 py-4 text-right text-xl font-bold ${
-                        player.delta > 0 ? 'text-green-600' : player.delta < 0 ? 'text-red-600' : 'text-gray-600'
+                        player.delta > 0 ? 'text-green-600' : player.delta < 0 ? 'text-red-600' : 'text-black'
                       }`}>
                         {player.delta > 0 ? '+' : ''}{player.delta}
                       </td>
