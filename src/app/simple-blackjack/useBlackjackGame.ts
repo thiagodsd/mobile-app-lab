@@ -253,11 +253,11 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
   }, [gameState]);
 
   const newGame = useCallback(() => {
-    if (gameState.gamesPlayed >= 6) {
+    if (gameState.gamesPlayed >= 10) {
       setGameState({
         ...gameState,
         gameStatus: 'betting',
-        message: 'Fim de jogo! Você jogou todas as 6 rodadas.',
+        message: 'Fim de jogo! Você jogou todas as 10 rodadas.',
       });
       return;
     }
@@ -269,19 +269,29 @@ export function useBlackjackGame(initialBalance: number = 100, savedState?: Game
       ...gameState.dealerHand,
     ];
 
+    let newDeck = [...gameState.deck];
+    let finalDiscardPile = newDiscardPile;
+
     // Check if there are enough cards in the deck (minimum 4 cards needed to start)
-    if (gameState.deck.length < 4) {
-      setGameState({
-        ...gameState,
-        gameStatus: 'betting',
-        message: 'Não há cartas suficientes no baralho. Fim do jogo!',
-      });
-      return;
+    // If not, reshuffle the discard pile back into the deck
+    if (newDeck.length < 4) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Reshuffling deck. Current deck:', newDeck.length, 'Discard pile:', newDiscardPile.length);
+      }
+
+      // Combine deck and discard pile, then shuffle
+      newDeck = shuffleDeck([...newDeck, ...newDiscardPile]);
+      finalDiscardPile = []; // Clear discard pile after reshuffling
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Deck reshuffled. New deck size:', newDeck.length);
+      }
     }
 
     setGameState({
       ...gameState,
-      discardPile: newDiscardPile,
+      deck: newDeck,
+      discardPile: finalDiscardPile,
       playerHand: [],
       dealerHand: [],
       playerScore: 0,
