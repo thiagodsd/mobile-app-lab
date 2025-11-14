@@ -1,0 +1,84 @@
+/* Tema Minimalista Ultra Clean */
+
+:root {
+  --r-background-color: #ffffff;
+  --r-main-font: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --r-main-font-size: 16px;
+  --r-main-color: #000000;
+  --r-heading-font: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --r-heading-color: #000000;
+  --r-heading1-size: 5em;
+  --r-heading2-size: 3.2em;
+  --r-heading3-size: 2.6em;
+  --r-link-color: #000000;
+  --r-link-color-hover: #666666;
+  --r-selection-background-color: #000000;
+  --r-selection-color: #ffffff;
+}
+
+.reveal {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-weight: 300;
+  text-transform: none;
+  margin: 0 0 1em 0;
+  line-height: 1.2;
+}
+
+.reveal p {
+  margin: 1em 0;
+  line-height: 1.6;
+}
+
+.reveal a {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.2);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.reveal a:hover {
+  text-decoration-color: rgba(0, 0, 0, 1);
+}
+
+/* Remove qualquer sombra ou border padrão */
+.reveal section img {
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+/* Espaçamento generoso */
+.reveal .slides {
+  text-align: center;
+}
+
+/* Controles visíveis mas discretos */
+.reveal .controls {
+  color: #000000;
+  opacity: 0.1;
+  transition: opacity 0.2s ease;
+}
+
+.reveal .controls:hover {
+  opacity: 0.5;
+}
+
+/* Seleção de texto clean */
+::selection {
+  background: #000000;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #000000;
+  color: #ffffff;
+}

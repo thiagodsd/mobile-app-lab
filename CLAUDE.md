@@ -4,52 +4,49 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a React web application built with Create React App, despite being named "mobile-app-lab" in the directory and README. The project appears to be a restaurant menu showcase with Spanish/Portuguese content, featuring step-by-step dining experiences with pricing and imagery.
+This is a Next.js 15.5.4 project focused on creating an interactive page about probability distributions. The project uses the App Router architecture with TypeScript, Tailwind CSS v4, and is optimized with Turbopack for faster development builds.
+
+These are some example URLs from the deployed project that illustrate its structure and content:
+1. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/conhecimento-previo/
+2. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/teoria/
+3. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/teoria/reconhecimento-padrao/
+4. https://mobile-app-3yvenqxg5-thiagodsds-projects.vercel.app/educacao-na-computacao/identificacao-de-padrao/
 
 ## Development Commands
 
-- **Start development server**: `npm start` (runs on port 3000 by default)
-- **Build for production**: `npm run build`
-- **Run tests**: `npm test`
-- **Eject from Create React App**: `npm run eject` (irreversible)
+- **Start development server**: `npm run dev` (runs with Turbopack optimization on http://localhost:3000)
+- **Build for production**: `npm run build` (builds with Turbopack optimization)
+- **Start production server**: `npm start`
+- **Lint code**: `npm run lint` (uses ESLint with Next.js TypeScript config)
 
 ## Architecture
 
-### Key Dependencies
-- **React Router DOM**: Client-side routing configured in `src/index.js` with BrowserRouter
-- **AOS (Animate On Scroll)**: Animation library initialized in `App.js` with custom settings
-- **Firebase**: Analytics and potentially other services, configured in `src/firebase.js`
+### Tech Stack
+- **Next.js 15.5.4**: React framework with App Router
+- **React 19.1.0**: Latest React with concurrent features
+- **TypeScript 5**: Type safety and enhanced developer experience
+- **Tailwind CSS v4**: Utility-first CSS framework with PostCSS integration
+- **Turbopack**: Fast bundler for development and production builds
+- **ESLint**: Code linting with Next.js and TypeScript rules
 
-### Component Structure
-- `App.js`: Main application component with AOS initialization and routing setup
-- `HomePage.js`: Primary page component containing restaurant menu data and layout
-- `Header.js`: Reusable header component with logo and restaurant branding
-- `Services.js`: Reusable component for rendering menu sections with items, images, and pricing
-- `index.js`: Application entry point with React Router setup
+### Project Structure
+- `src/app/`: App Router directory containing pages and layouts
+  - `layout.tsx`: Root layout with Geist fonts (Sans and Mono variants)
+  - `page.tsx`: Homepage component
+  - `globals.css`: Global Tailwind CSS styles
+- `next.config.ts`: Next.js configuration (currently minimal)
+- `tsconfig.json`: TypeScript configuration with `@/*` path aliases pointing to `src/*`
 
-### Data Organization
-Menu items are stored as arrays of objects in `HomePage.js` with structure:
-```javascript
-{
-    name: string,
-    description: string,
-    price: string,
-    image: imported_image
-}
-```
+### Configuration Notes
+- **Path Aliases**: `@/*` maps to `./src/*` for cleaner imports
+- **Font Setup**: Uses Geist Sans and Geist Mono with CSS variables for consistent typography
+- **Styling**: Tailwind CSS v4 with PostCSS integration, includes dark mode support
+- **TypeScript**: Strict mode enabled with Next.js plugin integration
+- **ESLint**: Configured for Next.js core web vitals and TypeScript best practices
 
-### Asset Management
-- Images stored in `src/img/` directory
-- All images imported individually in `HomePage.js`
-- No centralized asset management system
+### Environment Setup
+The project maintains Firebase configuration files (.env.example, .env.local) for potential backend integration, though the current focus is on the probability distributions interactive page.
 
-### Styling
-- Global styles in `src/globals.css`
-- AOS animations configured with 1200ms duration and ease-in-sine easing
-
-## Important Notes
-
-- Firebase configuration contains API keys and should be treated as environment-specific
-- The app uses both Spanish and Portuguese content throughout
-- Price display logic conditionally shows pricing based on string length
-- The project structure suggests this may have been converted from or intended as a mobile app
+## Project Goal
+The main objective is to create an interactive educational page about probability distributions, likely involving mathematical visualizations, interactive charts, and educational content to help users understand statistical concepts.
+- não use dl/dt/dd
